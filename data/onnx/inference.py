@@ -1,9 +1,8 @@
-# Install required libraries
-# pip install onnxruntime transformers numpy
-
 import onnxruntime as ort
 import numpy as np
 from transformers import DistilBertTokenizer
+import nltk
+from nltk.tokenize import word_tokenize
 
 # Step 1: Load the ONNX Model
 onnx_model_path = "distilbert_model.onnx"  # Path to your ONNX file
@@ -42,7 +41,18 @@ toxicity_score = probs[0][1]  # Assuming class 1 is Toxic
 # Step 7: Classify as Toxic or Not Toxic
 classification = "Toxic" if toxicity_score >= 0.5 else "Not Toxic"
 
-# Step 8: Display Results
+# Step 8: NLTK Rule Enforcement (Checking harmful words)
+nltk.download('punkt')
+harmful_words = ["bomb", "kill", "attack", "hack"]  # Example harmful words
+
+tokens = word_tokenize(input_text.lower())
+for word in tokens:
+    if word in harmful_words:
+        print("Rule Enforcement: Harmful content detected!")
+        classification = "Blocked: Harmful Content"
+        break
+
+# Step 9: Display Results
 print(f"Input Text: {input_text}")
 print(f"Toxicity Score: {toxicity_score:.2f}")
 print(f"Classification: {classification}")
