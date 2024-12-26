@@ -3,3 +3,5 @@
 *.safetensors filter=lfs diff=lfs merge=lfs -text
 data/onnx/distilbert_model.onnx filter=lfs diff=lfs merge=lfs -text
 data/raw/final_model/model.safetensors filter=lfs diff=lfs merge=lfs -text
+data/onnx/toxic_classifier.onnx filter=lfs diff=lfs merge=lfs -text
+
