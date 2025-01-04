@@ -3,6 +3,7 @@ use tokenizers::Tokenizer;
 use std::io::{self, Write};
 use std::time::Instant;
 
+
 fn load_model(model_path: &str) -> TractResult<RunnableModel<TypedFact, Box<dyn TypedOp>, Graph<TypedFact, Box<dyn TypedOp>>>> {
     println!("Loading model...");
     let model = tract_onnx::onnx()
