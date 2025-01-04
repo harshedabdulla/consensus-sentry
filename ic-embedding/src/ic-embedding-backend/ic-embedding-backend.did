@@ -1,0 +1,17 @@
+type Result = variant { Ok; Err : text };
+type ClassificationResult = record {
+    probability: float32;
+    label: text;
+};
+service : () -> {
+  append_model_bytes : (blob) -> ();
+  append_vocab_bytes : (blob) -> ();
+  clear_model_bytes : () -> ();
+  clear_vocab_bytes : () -> ();
+  get_embeddings : (text) -> (vec float32);
+   classify_text: (text: text) -> (variant {
+        Ok: vec ClassificationResult;
+        Err: text;
+    });
+  setup: () -> (Result);
+}
