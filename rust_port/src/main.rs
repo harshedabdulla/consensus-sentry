@@ -61,7 +61,7 @@ fn run_inference(
 
 fn main() -> TractResult<()> {
     // Load model
-    let model = load_model("../data/onnx/toxic_classifier.onnx")?;
+    let model = load_model("../ic-embedding/src/ic-embedding-backend/src/toxic_classifier.onnx")?;
     
     // Load tokenizer from file or create new
     let tokenizer = Tokenizer::from_file("../data/onnx/tokenizer/tokenizer.json")
