@@ -1,4 +1,4 @@
 .venv
 .DS_Store
 
-/rust_port/target
+experiments/rust_port/target
