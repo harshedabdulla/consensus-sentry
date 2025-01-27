@@ -1,0 +1,3 @@
+service : {
+    "classify_prompt": (text) -> (variant { Ok: text; Err: text });
+}
