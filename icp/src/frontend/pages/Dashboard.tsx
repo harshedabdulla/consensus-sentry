@@ -1,0 +1,281 @@
+import { Link } from "react-router-dom";
+import { 
+  FiFileText, 
+  FiTrendingUp, 
+  FiCheckSquare, 
+  FiStar, 
+  FiPlus, 
+  FiCheckCircle,
+  FiMessageSquare,
+  FiList,
+  FiArrowRight,
+} from "react-icons/fi";
+
+interface StatCardProps {
+  title: string;
+  value: string | number;
+  icon: JSX.Element;
+  trend: string;
+  link: string;
+  description?: string;
+}
+
+interface ActivityItemProps {
+  type: 'vote' | 'rule' | 'comment';
+  description: string;
+  timestamp: string;
+  impact?: string;
+}
+
+const Dashboard = () => {
+  const systemStats = {
+    totalRules: 142,
+    activeProposals: 3,
+    totalVotes: 1245,
+    userReputation: 85,
+  };
+
+  const recentRules = [
+    { 
+      id: 1, 
+      domain: "Healthcare", 
+      status: "Active", 
+      votes: 45,
+      description: "HIPAA compliance and medical terminology filtering",
+      lastUpdated: "2 days ago",
+      impact: "High"
+    },
+    { 
+      id: 2, 
+      domain: "Finance", 
+      status: "Pending", 
+      votes: 12,
+      description: "SEC compliance and financial data protection",
+      lastUpdated: "5 hours ago",
+      impact: "Medium"
+    },
+    { 
+      id: 3, 
+      domain: "Education", 
+      status: "Active", 
+      votes: 78,
+      description: "Content appropriateness for K-12 students",
+      lastUpdated: "1 day ago",
+      impact: "High"
+    },
+  ];
+
+  return (
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-2xl font-bold">GuardRail Dashboard</h1>
+          <p className="text-gray-600 mt-1">Monitor and manage your LLM guardrails</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-gray-600">System Status: </span>
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span className="text-sm font-medium">Operational</span>
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total Rules"
+          value={systemStats.totalRules}
+          icon={<FiFileText className="w-8 h-8" />}
+          trend="+2 this week"
+          link="/manage-rules"
+          description="Active guardrails across all domains"
+        />
+        <StatCard
+          title="Active Proposals"
+          value={systemStats.activeProposals}
+          icon={<FiTrendingUp className="w-8 h-8" />}
+          trend="1 new today"
+          link="/voting"
+          description="Rules pending community review"
+        />
+        <StatCard
+          title="Total Votes"
+          value={systemStats.totalVotes}
+          icon={<FiCheckSquare className="w-8 h-8" />}
+          trend="+45 this week"
+          link="/voting"
+          description="Cumulative community participation"
+        />
+        <StatCard
+          title="Your Reputation"
+          value={`${systemStats.userReputation}/100`}
+          icon={<FiStar className="w-8 h-8" />}
+          trend="+5 this month"
+          link="/profile"
+          description="Based on rule contributions and voting"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white border-[1px] rounded-lg p-6">
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h2 className="text-xl font-semibold">Rules Overview</h2>
+              <p className="text-sm text-gray-600 mt-1">Recently updated guardrails</p>
+            </div>
+            <Link
+              to="/manage-rules"
+              className="text-sm flex items-center gap-1 hover:gap-2 transition-all text-gray-600 hover:text-gray-900"
+            >
+              View All <FiArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="space-y-4">
+            {recentRules.map((rule) => (
+              <div
+                key={rule.id}
+                className="p-4 rounded-lg border-[1px] hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h3 className="font-medium flex items-center gap-2">
+                      {rule.domain}
+                      <span className={`text-xs px-2 py-1 rounded-full ${
+                        rule.impact === 'High' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {rule.impact} Impact
+                      </span>
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">{rule.description}</p>
+                  </div>
+                  <span className={`px-2 py-1 text-xs rounded-full ${
+                    rule.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {rule.status}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-sm text-gray-600">
+                  <span>Last updated: {rule.lastUpdated}</span>
+                  <span className="font-medium">{rule.votes} votes</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-white border-[1px] rounded-lg p-6">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h2 className="text-xl font-semibold">Recent Activity</h2>
+                <p className="text-sm text-gray-600 mt-1">Your latest interactions</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <ActivityItem
+                type="vote"
+                description="Voted on Healthcare Rule #45"
+                timestamp="2 hours ago"
+                impact="Helped achieve consensus"
+              />
+              <ActivityItem
+                type="rule"
+                description="Created new Finance Rule"
+                timestamp="1 day ago"
+                impact="Pending community review"
+              />
+              <ActivityItem
+                type="comment"
+                description="Commented on Education Proposal"
+                timestamp="3 days ago"
+                impact="3 replies received"
+              />
+            </div>
+          </div>
+
+          <div className="bg-white border-[1px] rounded-lg p-6">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h2 className="text-xl font-semibold">Quick Actions</h2>
+                <p className="text-sm text-gray-600 mt-1">Common tasks and operations</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Link
+                to="/create-rule"
+                className="p-6 border-[1px] rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
+              >
+                <FiPlus className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <div>
+                  <div className="font-medium">Create Rule</div>
+                  <div className="text-sm text-gray-600">Propose new guardrails</div>
+                </div>
+              </Link>
+              <Link
+                to="/voting"
+                className="p-6 border-[1px] rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
+              >
+                <FiCheckCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <div>
+                  <div className="font-medium">Vote Now</div>
+                  <div className="text-sm text-gray-600">Review pending proposals</div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const StatCard = ({ title, value, icon, trend, link, description }: StatCardProps) => (
+  <Link
+    to={link}
+    className="bg-white border-[1px] rounded-lg p-6 transition-colors hover:bg-gray-50 group"
+  >
+    <div className="flex items-center justify-between mb-2">
+      <div className="text-gray-600 group-hover:scale-110 transition-transform">
+        {icon}
+      </div>
+      <span className="text-sm text-gray-600">{trend}</span>
+    </div>
+    <div>
+      <h3 className="text-2xl font-semibold mb-1">{value}</h3>
+      <p className="text-sm text-gray-600">{title}</p>
+      {description && (
+        <p className="text-xs text-gray-500 mt-2">{description}</p>
+      )}
+    </div>
+  </Link>
+);
+
+const ActivityItem = ({ type, description, timestamp, impact }: ActivityItemProps) => {
+  const icons = {
+    vote: <FiCheckSquare className="w-5 h-5" />,
+    rule: <FiList className="w-5 h-5" />,
+    comment: <FiMessageSquare className="w-5 h-5" />,
+  };
+
+  return (
+    <div className="flex items-start space-x-3">
+      <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full">
+        {icons[type]}
+      </div>
+      <div>
+        <p className="text-sm font-medium">{description}</p>
+        <div className="flex items-center gap-2 mt-1">
+          <p className="text-xs text-gray-500">{timestamp}</p>
+          {impact && (
+            <>
+              <span className="text-xs text-gray-300">•</span>
+              <p className="text-xs text-gray-500">{impact}</p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

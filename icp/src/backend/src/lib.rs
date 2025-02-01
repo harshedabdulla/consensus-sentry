@@ -3,13 +3,12 @@ use ic_cdk::api::management_canister::http_request::{
 };
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use ic_cdk_macros::update;
 
 // We'll use a HashMap since the response categories can vary
 #[derive(Serialize, Deserialize)]
 struct ApiResponse(HashMap<String, String>);
 
-#[update]
+#[ic_cdk::update]
 async fn classify_prompt(text: String) -> Result<String, String> {
     let url = "https://toxic-classifier-api-936459055446.us-central1.run.app/predict";
     let request_headers = vec![
@@ -46,3 +45,5 @@ async fn classify_prompt(text: String) -> Result<String, String> {
         Err((code, msg)) => Err(format!("HTTP request failed: {} ({:?})", msg, code)),
     }
 }
+
+ic_cdk::export_candid!();

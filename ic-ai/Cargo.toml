@@ -1,5 +1,0 @@
-[workspace]
-members = [
-    "src/ic-ai-backend"
-]
-resolver = "2"
