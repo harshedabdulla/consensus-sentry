@@ -1,3 +1,29 @@
+type BoundedString = text;
+type RuleStatus = variant {
+    Proposed;
+    Voting;
+    Approved;
+    Rejected;
+};
+type Rule = record {
+    id: BoundedString;
+    text: BoundedString;
+    status: RuleStatus;
+    votes: nat32;
+};
+type Guardrail = record {
+    id: BoundedString;
+    name: BoundedString;
+    category: BoundedString;
+    rules: vec Rule;
+    owner: principal;
+    created_at: nat64;
+};
 service : {
-    "classify_prompt": (text) -> (variant { Ok: text; Err: text });
+    create_guardrail: (Guardrail) -> (variant { Ok: BoundedString; Err: text });
+    propose_rule: (BoundedString, Rule) -> (variant { Ok: BoundedString; Err: text });
+    get_guardrail: (BoundedString) -> (variant { Ok: Guardrail; Err: text }) query;
+    get_guardrails_by_owner: () -> (vec Guardrail) query;
+    classify_prompt: (text) -> (variant { Ok: text; Err: text });
+    get_all_gaurdrails: () -> (vec Guardrail) query;
 }

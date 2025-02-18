@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import CreateRule from "./pages/CreateRule";
 // import ManageRules from "./pages/ManageRules";
 // import Voting from "./pages/Voting";
 // import RuleHistory from "./pages/RuleHistory";
@@ -10,6 +9,9 @@ import CreateRule from "./pages/CreateRule";
 // import NotFound from "./pages/NotFound";
 import Classifier from "./pages/Classifier";
 import Sidebar from "./components/Sidebar";
+import CreateGaurd from "./pages/CreateGaurd";
+import MyGuardrails from "./pages/MyGaurdRails";
+import GuardrailsList from "./pages/GaurdRailsList";
 
 function App() {
   return (
@@ -21,10 +23,11 @@ function App() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/classifier" element={<Classifier />} />
-            <Route path="/create-rule" element={<CreateRule />} />
-            {/* <Route path="/manage-rules" element={<ManageRules />} />
-            <Route path="/voting" element={<Voting />} />
-            <Route path="/rule-history" element={<RuleHistory />} />
+            <Route path="/create-gaurd" element={<CreateGaurd />} />
+            <Route path="/manage-rules" element={<MyGuardrails />} />
+            <Route path="/rule-history" element={<GuardrailsList />} />
+            {/* <Route path="/voting" element={<Voting />} />
+            
             <Route path="/docs" element={<Docs />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />

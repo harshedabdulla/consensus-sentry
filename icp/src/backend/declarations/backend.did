@@ -1,3 +1,9 @@
+type Result = variant { Ok: text; Err: text };
+
 service : {
-    "classify_prompt": (text) -> (variant { Ok: text; Err: text });
+    "create_guardrail": (guardrail: Guardrail) -> (Result);
+    "propose_rule": (guardrail_id: text, rule: Rule) -> (Result);
+    "get_guardrail": (id: text) -> (Result) query;
+    "classify_prompt": (text: text) -> (Result) query;
+    "get_all_gaurdrails": () -> (Result) query;
 }

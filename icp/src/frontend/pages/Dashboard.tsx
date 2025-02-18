@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useGetAllGuardrails } from "../hooks/useGetAllGaurdRails";
 import { 
   FiFileText, 
   FiTrendingUp, 
@@ -28,6 +30,50 @@ interface ActivityItemProps {
 }
 
 const Dashboard = () => {
+  // mutate means to change the data, status is the state of the data
+  const { mutate: getAllGuardrails, data} = useGetAllGuardrails();
+  // useEffect is a hook that runs after the first render and after every update
+  useEffect(() => {
+    getAllGuardrails();
+  }, []);
+  // to get the count of the guardrails, we use the length of the data
+  const totalGuardrails = data?.length;
+  // to get the count of gaurdrails created this week, we use the filter method
+  const guardrailsThisWeek = data?.filter((guardrail) => {
+    // to get the date of the guardrail creation
+    const createdAt = new Date(Number(guardrail.created_at));
+    // to get the current date
+    const now = new Date();
+    // to get the difference in days between the current date and the guardrail creation date
+    const diff = now.getTime() - createdAt.getTime();
+    // to get the difference in days
+    const diffDays = diff / (1000 * 3600 * 24);
+    // to return the guardrails created this week
+    return diffDays <= 7;
+  }).length;
+
+  // to show the count of approved rules
+  const approvedRules = data?.reduce((acc, guardrail) => {
+    // to get the count of approved rules
+    const approved = guardrail.rules.filter((rule) => rule.status.toString()[0] === "Approved").length;
+    return acc + approved;
+  }, 0);
+
+  // to get the count of gaurdrails created this today, we use the filter method
+  const guardrailsToday = data?.filter((guardrail) => {
+    // to get the date of the guardrail creation
+    const createdAt = new Date(Number(guardrail.created_at));
+    // to get the current date
+    const now = new Date();
+    // to get the difference in days between the current date and the guardrail creation date
+    const diff = now.getTime() - createdAt.getTime();
+    // to get the difference in days
+    const diffDays = diff / (1000 * 3600 * 24);
+    // to return the guardrails created this week
+    return diffDays <= 1;
+  }).length;
+
+
   const systemStats = {
     totalRules: 142,
     activeProposals: 3,
@@ -69,7 +115,7 @@ const Dashboard = () => {
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold">GuardRail Dashboard</h1>
+          <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="text-gray-600 mt-1">Monitor and manage your LLM guardrails</p>
         </div>
         <div className="flex items-center gap-4">
@@ -84,17 +130,17 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           title="Total Rules"
-          value={systemStats.totalRules}
+          value={approvedRules || 0}
           icon={<FiFileText className="w-8 h-8" />}
-          trend="+2 this week"
+          trend={`+${guardrailsThisWeek} new this week`}
           link="/manage-rules"
           description="Active guardrails across all domains"
         />
         <StatCard
           title="Active Proposals"
-          value={systemStats.activeProposals}
+          value={totalGuardrails || 0}
           icon={<FiTrendingUp className="w-8 h-8" />}
-          trend="1 new today"
+          trend={`${guardrailsToday} new today`}
           link="/voting"
           description="Rules pending community review"
         />
@@ -202,7 +248,7 @@ const Dashboard = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Link
-                to="/create-rule"
+                to="/create-gaurd"
                 className="p-6 border-[1px] rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
               >
                 <FiPlus className="w-6 h-6 group-hover:scale-110 transition-transform" />

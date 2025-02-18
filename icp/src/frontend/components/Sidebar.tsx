@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { to: "/dashboard", icon: <FiHome size={20} />, text: "Dashboard" },
-    { to: "/create-rule", icon: <FiPlus size={20} />, text: "Create Rule" },
+    { to: "/create-gaurd", icon: <FiPlus size={20} />, text: "New Guard Rail" },
     { to: "/classifier", icon: <FiWind size={20} />, text: "Prompt Classifier" },
     { to: "/manage-rules", icon: <FiList size={20} />, text: "Manage Rules" },
     { to: "/voting", icon: <FiCheckSquare size={20} />, text: "Voting" },
@@ -30,7 +30,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className={`h-screen flex flex-col bg-white border-r-[1px] transition-all duration-300 ${isOpen ? "w-64" : "w-16"}`}>
+    <div className={`h-screen sticky top-0 flex flex-col bg-white border-r-[1px] transition-all duration-300 ${isOpen ? "w-64" : "w-16"}`}>
       {/* Header */}
       <div className={`flex items-center ${isOpen ? 'justify-between' : 'justify-center'} p-4 border-b-[1px]`}>
         {isOpen && <span className="font-semibold">Consensus Sentry</span>}
