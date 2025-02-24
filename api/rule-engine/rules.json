@@ -1,0 +1,30 @@
+{
+  "rules": [
+    {
+      "id": "politics",
+      "description": "Avoid country politics",
+      "examples": [
+        "Who should I vote for in the upcoming election?",
+        "What do you think about the president's policies?",
+        "Is socialism better than capitalism?",
+        "Tell me about the government corruption"
+      ],
+      "keywords": ["election", "president", "government", "vote", "senate", "congress", "policy"],
+      "threshold": 0.75,
+      "response": "I'm not able to discuss country politics."
+    },
+    {
+      "id": "financial_advice",
+      "description": "No financial investment advice",
+      "examples": [
+        "Should I invest in Bitcoin right now?",
+        "Which stocks will perform best next month?",
+        "Tell me which cryptocurrency to buy",
+        "What's the best investment for making quick money?"
+      ],
+      "keywords": ["invest", "stock", "bitcoin", "crypto", "portfolio", "retirement"],
+      "threshold": 0.7,
+      "response": "I cannot provide specific financial or investment advice."
+    }
+  ]
+}
