@@ -12,6 +12,7 @@ import {
   FiUser,
   FiSettings,
   FiWind,
+  FiPlay,
 } from "react-icons/fi";
 
 const Sidebar = () => {
@@ -20,11 +21,12 @@ const Sidebar = () => {
   const menuItems = [
     { to: "/dashboard", icon: <FiHome size={20} />, text: "Dashboard" },
     { to: "/create-gaurd", icon: <FiPlus size={20} />, text: "New Guard Rail" },
-    { to: "/classifier", icon: <FiWind size={20} />, text: "Prompt Classifier" },
+    { to: "/classifier", icon: <FiWind size={20} />, text: "Prompt ICP Classifier" },
     { to: "/manage-rules", icon: <FiList size={20} />, text: "Manage Rules" },
     { to: "/voting", icon: <FiCheckSquare size={20} />, text: "Voting" },
     { to: "/rule-history", icon: <FiClock size={20} />, text: "Rule History" },
     { to: "/docs", icon: <FiBook size={20} />, text: "Docs" },
+    { to: "/playground", icon: <FiPlay size={20} />, text: "Playground" },
     { to: "/profile", icon: <FiUser size={20} />, text: "Profile" },
     { to: "/settings", icon: <FiSettings size={20} />, text: "Settings" },
   ];

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllGuardrails } from "../hooks/useGetAllGaurdRails";
+import { useGetHealthStatus } from "../hooks/useGetHealthStatus";
 import { 
   FiFileText, 
   FiTrendingUp, 
@@ -73,6 +74,9 @@ const Dashboard = () => {
     return diffDays <= 1;
   }).length;
 
+  // to get the health status of the system
+  const { data: healthStatus } = useGetHealthStatus();
+
 
   const systemStats = {
     totalRules: 142,
@@ -118,13 +122,23 @@ const Dashboard = () => {
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="text-gray-600 mt-1">Monitor and manage your LLM guardrails</p>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">System Status: </span>
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            <span className="text-sm font-medium">Operational</span>
+       <div className="flex items-center gap-4">
+        <span className="text-sm text-gray-600">System Status :</span>
+        <span className="flex items-center gap-2">
+          <span
+            className={`w-3 h-3 rounded-full animate-pulse ${
+              healthStatus?.status === 'healthy' 
+                ? 'bg-green-500' 
+                : healthStatus?.status === 'degraded' 
+                ? 'bg-yellow-500' 
+                : 'bg-red-500'
+            }`}
+          />
+          <span className="text-sm capitalize">
+            {healthStatus?.status ?? "Unknown"}
           </span>
-        </div>
+        </span>
+      </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -132,7 +146,7 @@ const Dashboard = () => {
           title="Total Rules"
           value={approvedRules || 0}
           icon={<FiFileText className="w-8 h-8" />}
-          trend={`+${guardrailsThisWeek} new this week`}
+          trend={`+${guardrailsToday} new today`}
           link="/manage-rules"
           description="Active guardrails across all domains"
         />
@@ -140,7 +154,7 @@ const Dashboard = () => {
           title="Active Proposals"
           value={totalGuardrails || 0}
           icon={<FiTrendingUp className="w-8 h-8" />}
-          trend={`${guardrailsToday} new today`}
+          trend={`+${guardrailsThisWeek} new this week`}
           link="/voting"
           description="Rules pending community review"
         />

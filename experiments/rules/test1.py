@@ -23,9 +23,9 @@ import asyncio
 '''
 
 # Configuration
-MODEL_NAME = "all-MiniLM-L6-v2"
+MODEL_NAME = "all-mpnet-base-v2"
 CACHE_SIZE = 1000
-API_TIMEOUT = 3.0  # seconds
+API_TIMEOUT = 5.0  # seconds
 
 app = FastAPI()
 model = SentenceTransformer(MODEL_NAME)

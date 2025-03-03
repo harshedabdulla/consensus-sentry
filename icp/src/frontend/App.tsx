@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar";
 import CreateGaurd from "./pages/CreateGaurd";
 import MyGuardrails from "./pages/MyGaurdRails";
 import GuardrailsList from "./pages/GaurdRailsList";
+import PlayGround from "./pages/PlayGround";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/create-gaurd" element={<CreateGaurd />} />
             <Route path="/manage-rules" element={<MyGuardrails />} />
             <Route path="/rule-history" element={<GuardrailsList />} />
+            <Route path="/playground" element={<PlayGround />} />
             {/* <Route path="/voting" element={<Voting />} />
             
             <Route path="/docs" element={<Docs />} />
