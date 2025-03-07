@@ -19,6 +19,12 @@
       "declarations": {
         "output": "src/frontend/declarations"
       }
+    },
+    "governance_backend":{
+      "candid": "src/governance_backend/governance_backend.did",
+      "package": "governance_backend",
+      "dependencies": ["backend"],
+      "type": "rust"    
     }
   },
   "defaults": {
