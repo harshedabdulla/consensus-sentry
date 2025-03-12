@@ -1,0 +1,18 @@
+type VoteData = record {
+    neuron_id: text;
+    proposal_id: nat64;
+    vote: bool;
+};
+
+type RuleVote = record {
+    votes: vec record { principal; bool };
+    start_time: nat64;
+    timer: opt nat64;
+    neuron_ids: vec record { principal; text };
+};
+
+service : {
+    "submit_vote": (principal, text, nat64, bool) -> (text);
+    "get_rule_result": (nat64) -> (opt bool) query;
+    "get_voting_status": (nat64) -> (text) query;
+}

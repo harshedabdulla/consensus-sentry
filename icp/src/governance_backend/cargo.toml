@@ -1,5 +1,5 @@
 [package]
-name = "backend"
+name = "governance_backend"
 version = "0.0.0"
 edition = "2021"
 
@@ -11,8 +11,12 @@ crate-type = ["cdylib"]
 [dependencies]
 candid = "0.10"
 ic-cdk = "0.17.1"
-ic-cdk-timers = "0.10" # Feel free to remove this dependency if you don't need timers
+ic-cdk-timers = "0.11.0" 
 ic-cdk-macros = "0.17.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 ic-stable-structures = "0.6.7"
+prost = "0.13.5"
+
+[build-dependencies]
+prost-build = "0.13.5"
