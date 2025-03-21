@@ -11,8 +11,52 @@ type RuleVote = record {
     neuron_ids: vec record { principal; text };
 };
 
+// service : {
+//     "submit_vote": (principal, text, nat64, bool) -> (text);
+//     "get_rule_result": (nat64) -> (opt bool) query;
+//     "get_voting_status": (nat64) -> (text) query;
+// }
+
+type Principal = principal;
+type TimerId = nat64;
+
+type RequestCreateNeuron = record {
+    principal_id: Principal;
+    stake_amount: float64;
+    dissolve_delay_seconds: nat64;
+};
+
+type ApiResponse = variant {
+    Ok: record {
+        success: bool;
+        message: text;
+        data: opt text;
+    };
+    Err: record {
+        success: bool;
+        message: text;
+        data: opt text;
+    };
+};
+
+type VoteRequest = record {
+    principal_id: Principal;
+    proposal_id: nat64;
+    vote: bool;
+};
+
+type NeuronData = record {
+    neuron_id: text;
+    controller: Principal;
+    stake_amount: nat64;
+    created_at: nat64;
+};
+
 service : {
-    "submit_vote": (principal, text, nat64, bool) -> (text);
-    "get_rule_result": (nat64) -> (opt bool) query;
-    "get_voting_status": (nat64) -> (text) query;
+    create_neuron: (RequestCreateNeuron) -> (ApiResponse);
+    submit_vote: (VoteRequest) -> (ApiResponse);
+    get_rule_result: (nat64) -> (opt bool) query;
+    get_voting_status: (nat64) -> (text) query;
+    get_voter_neuron_info: (Principal) -> (text);
+    list_registered_neurons: () -> (vec text);
 }
