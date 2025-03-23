@@ -1,0 +1,10 @@
+{
+  "canisters": {
+    "frontend": {
+      "entrypoint": "dapp/out/index.html",
+      "source": ["dapp/out"],
+      "type": "assets"
+    }
+  },
+  "output_env_file": ".env"
+} 
