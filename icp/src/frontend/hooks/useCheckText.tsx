@@ -4,7 +4,7 @@ import { CheckRequest, CheckResponse } from '../models/check.model';
 
 const checkText = async (request: CheckRequest): Promise<CheckResponse> => {
   const response = await axios.post<CheckResponse>(
-    'https://guardrail-middleware-586283029485.us-central1.run.app/check', 
+    'http://127.0.0.1:8000/check', 
     request
   );
   return response.data;

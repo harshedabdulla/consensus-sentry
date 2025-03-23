@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --font-outfit: 'mona-sans', system-ui, sans-serif;
+}
 
-
+.font-outfit {
+  font-family: "mona-sans";
+    display: swap;
+    src: url("/assets/fonts/Mona-Sans.woff2");
+}
 

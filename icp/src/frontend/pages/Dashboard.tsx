@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllGuardrails } from "../hooks/useGetAllGaurdRails";
 import { useGetHealthStatus } from "../hooks/useGetHealthStatus";
+import { useAuth } from "../context/AuthContext";
 import { 
   FiFileText, 
   FiTrendingUp, 
@@ -12,12 +13,13 @@ import {
   FiMessageSquare,
   FiList,
   FiArrowRight,
+  FiUser,
 } from "react-icons/fi";
 
 interface StatCardProps {
   title: string;
   value: string | number;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   trend: string;
   link: string;
   description?: string;
@@ -31,6 +33,7 @@ interface ActivityItemProps {
 }
 
 const Dashboard = () => {
+  const { principal } = useAuth();
   // mutate means to change the data, status is the state of the data
   const { mutate: getAllGuardrails, data} = useGetAllGuardrails();
   // useEffect is a hook that runs after the first render and after every update
@@ -117,28 +120,46 @@ const Dashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-gray-600 mt-1">Monitor and manage your LLM guardrails</p>
+      {/* Header Section */}
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* Left side - Title and Description */}
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Voters Dashboard</h1>
+            <p className="text-sm text-gray-600 mt-1">Monitor and manage your LLM guardrails</p>
+          </div>
+
+          {/* Right side - User Info and System Status */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+            {/* Principal ID */}
+            <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
+              <FiUser className="w-4 h-4 text-gray-500" />
+              <div className="flex flex-col">
+                <span className="text-xs text-gray-500">Principal ID</span>
+                <span className="text-sm font-medium text-gray-900 truncate max-w-[200px]">{principal}</span>
+              </div>
+            </div>
+
+            {/* System Status */}
+            <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
+              <span
+                className={`w-2 h-2 rounded-full animate-pulse ${
+                  healthStatus?.status === 'healthy' 
+                    ? 'bg-green-500' 
+                    : healthStatus?.status === 'degraded' 
+                    ? 'bg-yellow-500' 
+                    : 'bg-red-500'
+                }`}
+              />
+              <div className="flex flex-col">
+                <span className="text-xs text-gray-500">System Status</span>
+                <span className="text-sm font-medium text-gray-900 capitalize">
+                  {healthStatus?.status ?? "Unavailable"}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-       <div className="flex items-center gap-4">
-        <span className="text-sm text-gray-600">System Status :</span>
-        <span className="flex items-center gap-2">
-          <span
-            className={`w-3 h-3 rounded-full animate-pulse ${
-              healthStatus?.status === 'healthy' 
-                ? 'bg-green-500' 
-                : healthStatus?.status === 'degraded' 
-                ? 'bg-yellow-500' 
-                : 'bg-red-500'
-            }`}
-          />
-          <span className="text-sm capitalize">
-            {healthStatus?.status ?? "Unknown"}
-          </span>
-        </span>
-      </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -177,10 +198,10 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white border-[1px] rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h2 className="text-xl font-semibold">Rules Overview</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Rules Overview</h2>
               <p className="text-sm text-gray-600 mt-1">Recently updated guardrails</p>
             </div>
             <Link
@@ -194,14 +215,14 @@ const Dashboard = () => {
             {recentRules.map((rule) => (
               <div
                 key={rule.id}
-                className="p-4 rounded-lg border-[1px] hover:bg-gray-50 transition-colors"
+                className="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
               >
                 <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-medium flex items-center gap-2">
+                    <h3 className="font-medium flex items-center gap-2 text-gray-900">
                       {rule.domain}
                       <span className={`text-xs px-2 py-1 rounded-full ${
-                        rule.impact === 'High' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
+                        rule.impact === 'High' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-gray-50 text-gray-700 border border-gray-200'
                       }`}>
                         {rule.impact} Impact
                       </span>
@@ -209,7 +230,7 @@ const Dashboard = () => {
                     <p className="text-sm text-gray-600 mt-1">{rule.description}</p>
                   </div>
                   <span className={`px-2 py-1 text-xs rounded-full ${
-                    rule.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                    rule.status === 'Active' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
                   }`}>
                     {rule.status}
                   </span>
@@ -224,10 +245,10 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white border-[1px] rounded-lg p-6">
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-xl font-semibold">Recent Activity</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Recent Activity</h2>
                 <p className="text-sm text-gray-600 mt-1">Your latest interactions</p>
               </div>
             </div>
@@ -253,31 +274,31 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white border-[1px] rounded-lg p-6">
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-xl font-semibold">Quick Actions</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Quick Actions</h2>
                 <p className="text-sm text-gray-600 mt-1">Common tasks and operations</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Link
                 to="/create-gaurd"
-                className="p-6 border-[1px] rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
+                className="p-6 border border-gray-200 rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
               >
                 <FiPlus className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 <div>
-                  <div className="font-medium">Create Rule</div>
+                  <div className="font-medium text-gray-900">Create Rule</div>
                   <div className="text-sm text-gray-600">Propose new guardrails</div>
                 </div>
               </Link>
               <Link
                 to="/voting"
-                className="p-6 border-[1px] rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
+                className="p-6 border border-gray-200 rounded-lg text-center flex flex-col items-center justify-center gap-3 hover:bg-gray-50 transition-colors group"
               >
                 <FiCheckCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 <div>
-                  <div className="font-medium">Vote Now</div>
+                  <div className="font-medium text-gray-900">Vote Now</div>
                   <div className="text-sm text-gray-600">Review pending proposals</div>
                 </div>
               </Link>
@@ -292,7 +313,7 @@ const Dashboard = () => {
 const StatCard = ({ title, value, icon, trend, link, description }: StatCardProps) => (
   <Link
     to={link}
-    className="bg-white border-[1px] rounded-lg p-6 transition-colors hover:bg-gray-50 group"
+    className="bg-white border border-gray-200 rounded-lg p-6 transition-colors hover:bg-gray-50 group"
   >
     <div className="flex items-center justify-between mb-2">
       <div className="text-gray-600 group-hover:scale-110 transition-transform">
@@ -319,11 +340,11 @@ const ActivityItem = ({ type, description, timestamp, impact }: ActivityItemProp
 
   return (
     <div className="flex items-start space-x-3">
-      <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full">
+      <div className="flex items-center justify-center w-8 h-8 bg-gray-50 border border-gray-200 rounded-full">
         {icons[type]}
       </div>
       <div>
-        <p className="text-sm font-medium">{description}</p>
+        <p className="text-sm font-medium text-gray-900">{description}</p>
         <div className="flex items-center gap-2 mt-1">
           <p className="text-xs text-gray-500">{timestamp}</p>
           {impact && (

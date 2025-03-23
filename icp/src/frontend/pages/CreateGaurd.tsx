@@ -72,6 +72,8 @@ const CreateGuard = () => {
   // Custom hook for creating guardrails
   const createGuardrailMutation = useCreateGuardrail(
     (data: CreateGuardrailResponse) => {
+      // Store the guardrail ID in session storage
+      sessionStorage.setItem('guardrailId', data.guardrailId);
       addMessage(`Guardrail created with ID: ${data.guardrailId}`, "bot");
       setStep(3);
     },
@@ -156,10 +158,10 @@ const CreateGuard = () => {
         {chatMessages.map((msg, index) => (
           <div
             key={index}
-            className={`p-2 my-2 rounded-lg max-w-3/4 ${
+            className={`p-3 my-2 rounded-lg max-w-3/4 ${
               msg.type === "user"
-                ? "bg-black text-white ml-auto"
-                : "bg-gray-300 text-black"
+                ? "bg-gray-900 text-white ml-auto"
+                : "bg-gray-50 text-gray-900 border border-gray-200"
             }`}
           >
             {msg.text}
@@ -168,23 +170,23 @@ const CreateGuard = () => {
       </div>
 
       {/* Step Content */}
-      <div className="mb-4 bg-gray-100 p-4 rounded-lg">
+      <div className="mb-4 bg-gray-50 border border-gray-200 p-4 rounded-lg">
         {step === 0 && (
           <div>
-            <h2 className="text-xl font-bold mb-2">Create New Guardrail</h2>
-            <p>What is the name of your guardrail?</p>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Create New Guardrail</h2>
+            <p className="text-gray-600">What is the name of your guardrail?</p>
           </div>
         )}
         {step === 1 && (
           <div>
-            <h2 className="text-xl font-bold mb-2">Select Category</h2>
-            <p>Choose a category for your guardrail:</p>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Select Category</h2>
+            <p className="text-gray-600">Choose a category for your guardrail:</p>
           </div>
         )}
         {step === 2 && (
           <div>
-            <h2 className="text-xl font-bold mb-2">Add Rules</h2>
-            <p>Add rules for your guardrail (current count: {guardrail.rules.length})</p>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Add Rules</h2>
+            <p className="text-gray-600">Add rules for your guardrail (current count: {guardrail.rules.length})</p>
           </div>
         )}
       </div>
@@ -192,12 +194,12 @@ const CreateGuard = () => {
       {/* Input Section */}
       <div className="mb-4">
         {step === 1 ? (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => selectCategory(category)}
-                className="p-2 border rounded-lg hover:bg-blue-200 transition-colors"
+                className="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-700 hover:text-gray-900"
               >
                 {category}
               </button>
@@ -211,7 +213,7 @@ const CreateGuard = () => {
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleNext()}
               placeholder={step === 0 ? "Enter guardrail name..." : "Type a rule..."}
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-900 placeholder-gray-500"
               disabled={createGuardrailMutation.isPending || step === 3}
             />
           </div>
@@ -225,7 +227,7 @@ const CreateGuard = () => {
                 <button
                   key={rule}
                   onClick={() => addSuggestedRule(rule)}
-                  className="px-3 py-1 bg-gray-200 rounded-full text-sm hover:bg-gray-300 transition-colors"
+                  className="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                   disabled={createGuardrailMutation.isPending}
                 >
                   {rule}
@@ -242,7 +244,7 @@ const CreateGuard = () => {
           <button
             onClick={handleFinish}
             disabled={createGuardrailMutation.isPending}
-            className="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 disabled:bg-green-300 transition-colors"
+            className="w-full bg-gray-900 text-white p-3 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 transition-colors"
           >
             {createGuardrailMutation.isPending ? "Creating..." : "Finish"}
           </button>
@@ -251,8 +253,8 @@ const CreateGuard = () => {
 
       {/* Success Message */}
       {step === 3 && (
-        <div className="mt-4 p-4 bg-green-100 rounded-lg">
-          <h3 className="font-bold text-green-800">Guardrail Created!</h3>
+        <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <h3 className="font-semibold text-green-800">Guardrail Created!</h3>
           <p className="text-green-700">
             Your guardrail has been created. Rules have been submitted for voting.
           </p>

@@ -49,7 +49,7 @@ const GuardrailsList = () => {
   }
 
   return (
-    <div className="space-y-4 p-4  mx-auto">
+    <div className="space-y-4 p-4 mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">All Guardrails</h2>
 
       {data?.map((guardrail) => (
@@ -77,7 +77,7 @@ const GuardrailItem = ({
   formatDate: (timestamp: string | number | bigint) => string;
 }) => {
   return (
-    <div className="bg-white border border-black shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-[1.01]">
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transition-transform transform hover:scale-[1.01]">
       <div
         className="p-5 flex justify-between items-center cursor-pointer bg-gradient-to-r from-gray-100 to-gray-50"
         onClick={onToggle}
@@ -128,7 +128,7 @@ const RuleItem = ({ rule }: { rule: Rule }) => {
   const { bg, text, border } = getStatusStyles(rule.status);
 
   return (
-    <div className={`p-4 rounded-lg border ${border} ${bg} flex justify-between items-center shadow-sm`}>
+    <div className={`p-4 rounded-lg border ${border} ${bg} flex justify-between items-center`}>
       <span className={`font-medium ${text}`}>{rule.text}</span>
       <div className="flex items-center space-x-3 text-sm">
         <span className={`font-semibold ${text}`}>{Object.keys(rule.status)[0]}</span>

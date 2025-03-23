@@ -31,7 +31,7 @@ export default function useCreateGuardrail(
       if (guardrail.rules.length === 0) {
         throw new Error("At least one rule is required.");
       }
-      return await backend.create_guardrail({
+      const response = await backend.create_guardrail({
         ...guardrail,
         id: crypto.randomUUID(),
         created_at: BigInt(Date.now()),
@@ -42,6 +42,7 @@ export default function useCreateGuardrail(
           votes: 0
         }))
       });
+      return response;
     },
     onSuccess: (data) => {
       if (data.Ok) {
@@ -51,11 +52,11 @@ export default function useCreateGuardrail(
       }
     },
     onError: (error: unknown) => {
-  if (error instanceof Error) {
-    onError?.(error.message);
-  } else {
-    onError?.("An unknown error occurred.");
-  }
-},
+      if (error instanceof Error) {
+        onError?.(error.message);
+      } else {
+        onError?.("An unknown error occurred.");
+      }
+    },
   });
 }
