@@ -19,10 +19,37 @@ const inter = Inter({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "Verifiable infrastructure for AI guardrails. A research project giving every AI moderation decision cryptographic provenance, so it can be measured, audited, and contested.";
+
 export const metadata: Metadata = {
-  title: "Consensus Sentry",
-  description:
-    "Verifiable infrastructure for AI guardrails — a research project on AI accountability.",
+  title: {
+    default: "Consensus Sentry: Verifiable infrastructure for AI guardrails",
+    template: "%s · Consensus Sentry",
+  },
+  description: DESCRIPTION,
+  applicationName: "Consensus Sentry",
+  keywords: [
+    "AI governance",
+    "responsible AI",
+    "India AI",
+    "AI accountability",
+    "attestation",
+    "AI guardrails",
+    "research",
+  ],
+  openGraph: {
+    title: "Consensus Sentry: Verifiable infrastructure for AI guardrails",
+    description: DESCRIPTION,
+    siteName: "Consensus Sentry",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consensus Sentry: Verifiable infrastructure for AI guardrails",
+    description: DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

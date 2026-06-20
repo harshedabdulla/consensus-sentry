@@ -81,6 +81,18 @@
   html {
     background-color: var(--color-marble-canvas);
     -webkit-text-size-adjust: 100%;
+    /* Anchor jumps land below the sticky header (h-16 = 64px) with breathing
+       room, rather than under it. */
+    scroll-padding-top: 6rem;
+  }
+
+  /* Calm, slow anchor scrolling — only when the user hasn't asked to reduce
+     motion. The unhurried feel comes from this plus generous section spacing
+     and the reveal-on-scroll fades below. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -101,5 +113,27 @@
   ::selection {
     background-color: var(--color-bone-mist);
     color: var(--color-lampblack);
+  }
+}
+
+/*
+  Micro-interactions. The only motion in the system is a quiet fade-and-rise:
+  on first scroll into view (handled by the Reveal component) and when the bias
+  demo swaps its responses. Both are suppressed under prefers-reduced-motion.
+*/
+@keyframes cs-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cs-fade-in {
+    animation: cs-fade-in 400ms ease-out both;
   }
 }
