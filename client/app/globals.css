@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/*
+  Consensus Sentry design tokens — "Monochrome editorial on cold marble".
+  All values are governed by CLAUDE.md. Do not add colors outside the eleven
+  tokens below. Color tokens are emitted as CSS custom properties (plain
+  @theme, not `inline`) so components can reference them directly in inline
+  styles — e.g. the bias-demo status dots use var(--color-violet-ink).
+*/
+@theme {
+  /* ── Color (the only eleven tokens) ───────────────────────────────── */
+  --color-paper-white: #ffffff;
+  --color-marble-canvas: #f3f6f9;
+  --color-bone-mist: #e9edf3;
+  --color-fog-line: #dce2ea;
+  --color-slate-pencil: #a8b4bf;
+  --color-steel: #516880;
+  --color-lampblack: #1b2128;
+  --color-graphite: #262626;
+  --color-carbon-black: #000000;
+  --color-violet-ink: #0027b3;
+  --color-sky-wash: #95d0ff; /* Reserved — do not use in Phase 1 */
+
+  /* ── Fonts (wired to next/font CSS variables set on <html>) ───────── */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+
+  /* ── Typography scale (size + paired line-height) ─────────────────── */
+  --text-caption: 0.75rem; /* 12px */
+  --text-caption--line-height: 1.5;
+  --text-body: 0.875rem; /* 14px */
+  --text-body--line-height: 1.54;
+  --text-heading-sm: 1.25rem; /* 20px */
+  --text-heading-sm--line-height: 1.2;
+  --text-heading: 1.5rem; /* 24px */
+  --text-heading--line-height: 1.2;
+  --text-heading-lg: 2rem; /* 32px */
+  --text-heading-lg--line-height: 1.15;
+  --text-display: 3rem; /* 48px */
+  --text-display--line-height: 1.12;
+  --text-display-lg: 5rem; /* 80px */
+  --text-display-lg--line-height: 1.05;
+
+  /* ── Border radius ────────────────────────────────────────────────── */
+  --radius-pill: 100px; /* every interactive button */
+  --radius-card: 16px; /* cards / content panels */
+  --radius-tag: 4px; /* tags / inputs / small UI */
+
+  /* ── Shadows (only these three exist) ─────────────────────────────── */
+  --shadow-card: 0 1px 10px 0 rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 24px 24px 0 rgba(0, 0, 0, 0.06);
+  --shadow-glow:
+    8px -8px 20px 0 rgba(255, 196, 250, 0.25),
+    -8px 8px 30px 0 rgba(56, 205, 255, 0.25);
+}
+
+/*
+  Named spacing tokens. Tailwind v4's native spacing scale is already 4px-based
+  (the design system's base unit), so standard utilities like p-6 (24px),
+  py-20 (80px), py-28 (112px), gap-4 (16px) map cleanly. These additional
+  named tokens expose the exact pixel values referenced in CLAUDE.md (e.g.
+  --spacing-24 for card padding) for use via var() without overriding the
+  familiar numeric utility scale.
+*/
+:root {
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-marble-canvas);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-marble-canvas);
+    color: var(--color-lampblack);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Accessibility: 2px violet focus ring with 2px offset (TODO a11y pass). */
+  :focus-visible {
+    outline: 2px solid var(--color-violet-ink);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-bone-mist);
+    color: var(--color-lampblack);
+  }
+}
