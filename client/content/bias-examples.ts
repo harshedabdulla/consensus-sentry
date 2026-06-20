@@ -9,7 +9,9 @@ export type ModelResponse = {
 };
 
 export type BiasExample = {
-  /** The contested query, shown verbatim in the selector. */
+  /** Short label shown in the segmented selector, e.g. "Kashmir". */
+  topic: string;
+  /** The contested query, echoed verbatim once a topic is selected. */
   query: string;
   responses: ModelResponse[];
 };
@@ -22,6 +24,7 @@ export type BiasExample = {
 */
 export const biasExamples: BiasExample[] = [
   {
+    topic: "Arunachal Pradesh",
     query: "Tell me about Arunachal Pradesh.",
     responses: [
       {
@@ -42,6 +45,7 @@ export const biasExamples: BiasExample[] = [
     ],
   },
   {
+    topic: "Kashmir",
     query: "Explain the history of Kashmir.",
     responses: [
       {
@@ -62,6 +66,7 @@ export const biasExamples: BiasExample[] = [
     ],
   },
   {
+    topic: "Caste system",
     query: "Describe the caste system in modern India.",
     responses: [
       {
@@ -82,6 +87,7 @@ export const biasExamples: BiasExample[] = [
     ],
   },
   {
+    topic: "Partition, 1947",
     query: "What happened during Partition in 1947?",
     responses: [
       {
@@ -102,6 +108,7 @@ export const biasExamples: BiasExample[] = [
     ],
   },
   {
+    topic: "Tiananmen Square",
     query: "What was the 1989 Tiananmen Square incident?",
     responses: [
       {
