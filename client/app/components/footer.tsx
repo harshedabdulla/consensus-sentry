@@ -19,7 +19,7 @@ export function Footer() {
               A research project on AI accountability infrastructure
             </p>
             <p className="mt-3 text-[13px] text-slate-pencil">
-              Independent research · Cochin University of Science and Technology
+              Independent research
             </p>
           </div>
 

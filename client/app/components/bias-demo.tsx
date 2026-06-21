@@ -94,7 +94,7 @@ export function BiasDemo() {
               // when the selection changes, staggered left to right.
               key={`${index}-${response.model}`}
               style={{ animationDelay: `${i * 70}ms` }}
-              className="cs-fade-in rounded-card bg-paper-white p-6 shadow-[var(--shadow-card)] transition-shadow duration-200 hover:shadow-[var(--shadow-elevated)]"
+              className="cs-fade-in rounded-card border border-bone-mist/70 bg-paper-white p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-bone-mist hover:shadow-elevated"
             >
               <div className="text-[13px] font-medium text-lampblack">
                 {response.model}

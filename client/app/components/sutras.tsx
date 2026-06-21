@@ -1,3 +1,5 @@
+import { Reveal } from "./ui/reveal";
+
 const sutras = [
   {
     name: "Trust is the Foundation",
@@ -35,11 +37,11 @@ export function Sutras() {
   return (
     <section className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="max-w-[880px] font-serif text-[48px] leading-[1.12] font-light text-lampblack">
+        <h2 className="max-w-[880px] font-serif text-[42px] leading-[1.10] font-light text-lampblack md:text-[48px]">
           Grounded in real governance principles.
         </h2>
 
-        <p className="mt-8 max-w-[720px] text-[16px] leading-[1.7] text-steel">
+        <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
           The mechanism is framework-agnostic, but it has to map onto principles
           someone has actually written down. India&rsquo;s AI Governance
           Guidelines (MeitY, November 2025) set out seven: Trust, People First,
@@ -52,23 +54,28 @@ export function Sutras() {
 
         <ol className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
           {sutras.map((sutra, i) => (
-            <li
+            <Reveal
               key={sutra.name}
-              className={`rounded-card border border-bone-mist bg-paper-white p-6 transition-colors duration-200 hover:border-fog-line ${
+              delay={i * 60}
+              className={`h-full ${
                 // The 7th card sits alone on its row, centered.
                 i === 6 ? "md:col-start-2" : ""
               }`}
             >
-              <p className="text-[11px] font-medium text-slate-pencil">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-2 text-[16px] font-medium text-lampblack">
-                {sutra.name}
-              </h3>
-              <p className="mt-3 text-body leading-[1.6] text-steel">
-                {sutra.mapping}
-              </p>
-            </li>
+              <li
+                className="group flex h-full flex-col rounded-card border border-bone-mist/60 bg-paper-white p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-bone-mist/90 hover:shadow-elevated"
+              >
+                <p className="text-[11px] font-semibold text-slate-pencil transition-colors group-hover:text-design-hudson-blue">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 text-[15px] font-semibold text-lampblack">
+                  {sutra.name}
+                </h3>
+                <p className="mt-2 text-[13px] leading-[1.6] text-steel">
+                  {sutra.mapping}
+                </p>
+              </li>
+            </Reveal>
           ))}
         </ol>
       </div>

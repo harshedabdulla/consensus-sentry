@@ -10,7 +10,7 @@ type Phase = {
 const phases: Phase[] = [
   {
     label: "Phase 01",
-    description: "Research statement and landing page",
+    description: "Research statement",
     status: "In progress",
     tone: {
       dot: "var(--color-carbon-black)",
@@ -54,23 +54,23 @@ export function Status() {
   return (
     <section className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[720px]">
-        <h2 className="font-serif text-[48px] leading-[1.12] font-light text-lampblack">
+        <h2 className="font-serif text-[42px] leading-[1.10] font-light text-lampblack md:text-[48px]">
           Where we are.
         </h2>
-        <p className="mt-6 text-[16px] leading-[1.7] text-steel">
+        <p className="mt-6 text-[15px] leading-[1.65] text-steel">
           Early-stage research. We are publishing as we go.
         </p>
 
-        <div className="mt-12">
+        <div className="mt-12 flex flex-col">
           {phases.map((phase) => (
             <div
               key={phase.label}
-              className="flex items-center gap-6 border-b border-bone-mist py-5 transition-colors duration-200 hover:bg-paper-white"
+              className="group flex items-center gap-6 border-b border-bone-mist/60 px-4 py-5 transition-all duration-200 hover:bg-design-linen hover:translate-x-1 rounded-tag"
             >
-              <span className="font-mono text-[13px] font-medium text-slate-pencil">
+              <span className="font-mono text-[13px] font-semibold text-slate-pencil transition-colors group-hover:text-design-hudson-blue">
                 {phase.label}
               </span>
-              <span className="flex-1 text-[15px] text-lampblack">
+              <span className="flex-1 text-[15px] font-medium text-lampblack transition-colors group-hover:text-black">
                 {phase.description}
               </span>
               <StatusTag label={phase.status} tone={phase.tone} />

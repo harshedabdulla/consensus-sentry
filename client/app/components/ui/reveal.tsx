@@ -43,11 +43,16 @@ export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: shown ? `${delay}ms` : "0ms" }}
-      className={`motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out ${
+      style={{
+        transitionDelay: shown ? `${delay}ms` : "0ms",
+        transitionProperty: "opacity, transform",
+        transitionDuration: "800ms",
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+      className={`motion-safe:transition-all ${
         shown
           ? "opacity-100 motion-safe:translate-y-0"
-          : "motion-safe:translate-y-3 motion-safe:opacity-0"
+          : "motion-safe:translate-y-6 motion-safe:opacity-0"
       } ${className}`}
     >
       {children}

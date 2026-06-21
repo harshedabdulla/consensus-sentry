@@ -8,18 +8,25 @@
   styles — e.g. the bias-demo status dots use var(--color-violet-ink).
 */
 @theme {
-  /* ── Color (the only eleven tokens) ───────────────────────────────── */
-  --color-paper-white: #ffffff;
-  --color-marble-canvas: #f3f6f9;
-  --color-bone-mist: #e9edf3;
-  --color-fog-line: #dce2ea;
-  --color-slate-pencil: #a8b4bf;
-  --color-steel: #516880;
-  --color-lampblack: #1b2128;
-  --color-graphite: #262626;
-  --color-carbon-black: #000000;
-  --color-violet-ink: #0027b3;
-  --color-sky-wash: #95d0ff; /* Reserved — do not use in Phase 1 */
+  /* ── Color tokens fused from DESIGN.md (mapped to original names for backward compatibility) ── */
+  --color-paper-white: #ffffff;      /* Paper: elevated surfaces */
+  --color-marble-canvas: #fefffc;    /* Cream: dominant warm off-white canvas background */
+  --color-bone-mist: #dee2de;        /* Sage: hairline card borders, dividers */
+  --color-fog-line: #dee2de;         /* Sage: input outlines, boundaries */
+  --color-slate-pencil: #646464;     /* Steel: muted helper text, captions */
+  --color-steel: #444141;            /* Iron: body text on canvas */
+  --color-lampblack: #171717;        /* Ink: headings and primary dark text */
+  --color-graphite: #2c2c2c;         /* Carbon: secondary dark UI/hover elements */
+  --color-carbon-black: #1f1f29;     /* Obsidian: primary black buttons */
+  --color-violet-ink: #0081c0;       /* Hudson Blue: the single chromatic accent for inline links */
+  --color-sky-wash: #95d0ff;         /* Reserved — do not use in Phase 1 */
+
+  /* ── Extra colors explicitly named from DESIGN.md ── */
+  --color-design-hudson-blue: #0081c0;
+  --color-design-slate-cyan: #41a1cf;
+  --color-design-graphite-night: #282834;
+  --color-design-linen: #f9faf7;
+  --color-design-sage: #dee2de;
 
   /* ── Fonts (wired to next/font CSS variables set on <html>) ───────── */
   --font-sans: var(--font-inter);
@@ -37,7 +44,7 @@
   --text-heading-lg: 2rem; /* 32px */
   --text-heading-lg--line-height: 1.15;
   --text-display: 3rem; /* 48px */
-  --text-display--line-height: 1.12;
+  --text-display--line-height: 1.10;
   --text-display-lg: 5rem; /* 80px */
   --text-display-lg--line-height: 1.05;
 
@@ -46,9 +53,10 @@
   --radius-card: 16px; /* cards / content panels */
   --radius-tag: 4px; /* tags / inputs / small UI */
 
-  /* ── Shadows (only these three exist) ─────────────────────────────── */
-  --shadow-card: 0 1px 10px 0 rgba(0, 0, 0, 0.08);
-  --shadow-elevated: 0 24px 24px 0 rgba(0, 0, 0, 0.06);
+  /* ── Shadows from DESIGN.md ───────────────────────────────────────── */
+  --shadow-card: 0 1px 1px 0 rgba(0, 0, 0, 0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.08); /* --shadow-subtle-2 */
+  --shadow-elevated: 0 2px 2px 0 rgba(0, 0, 0, 0.06), 0 0 0 5px rgba(0, 0, 0, 0.04); /* --shadow-subtle-3 */
+  --shadow-design-sm: 0 2px 6px 0 rgba(0, 0, 0, 0.15); /* --shadow-sm */
   --shadow-glow:
     8px -8px 20px 0 rgba(255, 196, 250, 0.25),
     -8px 8px 30px 0 rgba(56, 205, 255, 0.25);
@@ -130,6 +138,36 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes cs-dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.animate-dash {
+  stroke-dasharray: 5, 5;
+  animation: cs-dash 1.5s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 39, 179, 0.4);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(0, 39, 179, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 39, 179, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @media (prefers-reduced-motion: no-preference) {
