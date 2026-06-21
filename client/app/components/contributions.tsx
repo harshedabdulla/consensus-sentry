@@ -23,9 +23,9 @@ const contributions = [
 
 export function Contributions() {
   return (
-    <section className="px-6 pt-28 md:pt-40">
+    <section id="contributions" className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="font-serif text-[42px] leading-[1.10] font-light text-lampblack md:text-[48px]">
+        <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-lampblack md:text-[48px]">
           Three contributions.
         </h2>
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">

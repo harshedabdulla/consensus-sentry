@@ -12,7 +12,7 @@ export function Problem() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
           {/* Left Column: Original Content */}
           <div className="lg:col-span-7">
-            <h2 className="font-serif text-[42px] leading-[1.10] font-light text-lampblack md:text-[48px]">
+            <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-lampblack md:text-[48px]">
               Principles exist. Infrastructure does not.
             </h2>
 
@@ -223,12 +223,19 @@ export function Problem() {
                 </svg>
               </div>
 
+              {/* Figure caption — academic register, the GIC "Fig. N" move */}
+              <p className="mt-4 text-[12px] leading-[1.5] text-slate-pencil">
+                <span className="font-semibold text-steel">Fig. 1</span> — The
+                verifiable guardrail pipeline. Every decision produces a signed,
+                externally auditable record of which rule fired and when.
+              </p>
+
               {/* Refined Explanatory Panel (No arrow characters) */}
               <div className="mt-6 min-h-[76px] rounded-tag bg-design-linen p-4 border border-bone-mist/60">
                 {hoveredNode === "query" && (
                   <div className="cs-fade-in">
                     <h4 className="text-[12px] font-semibold text-lampblack">
-                      1. Prompt Ingres
+                      1. Prompt Ingress
                     </h4>
                     <p className="mt-1 text-[12px] leading-relaxed text-steel">
                       User inputs a query. The guardrail intercepts it to guarantee adherence to sovereign guidelines.

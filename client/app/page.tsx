@@ -1,5 +1,6 @@
 import { HeaderNav } from "./components/header-nav";
 import { Hero } from "./components/hero";
+import { Thesis } from "./components/thesis";
 import { Problem } from "./components/problem";
 import { BiasDemo } from "./components/bias-demo";
 import { Contributions } from "./components/contributions";
@@ -16,6 +17,9 @@ export default function Home() {
       <main>
         {/* Hero is above the fold — shown immediately, no reveal. */}
         <Hero />
+        <Reveal>
+          <Thesis />
+        </Reveal>
         <Reveal>
           <Problem />
         </Reveal>

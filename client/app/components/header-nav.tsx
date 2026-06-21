@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Shield, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const DISCUSSIONS_URL = `${REPO_URL}/discussions`;
@@ -57,7 +57,6 @@ export function HeaderNav() {
             href="#top"
             className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-lampblack transition-opacity hover:opacity-90"
           >
-            {/* <Shield size={15} strokeWidth={1.5} className="text-design-hudson-blue" /> */}
             <span className="hidden sm:inline">Consensus Sentry</span>
             <span className="sm:hidden text-xs">C. Sentry</span>
           </a>

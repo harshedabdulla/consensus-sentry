@@ -28,7 +28,7 @@ export function BiasDemo() {
   }, [index]);
 
   return (
-    <section className="px-6 pt-28 md:pt-40">
+    <section id="demo" className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
         <h3 className="text-heading-sm font-medium text-lampblack">
           What the gap looks like.
@@ -82,7 +82,7 @@ export function BiasDemo() {
         </p>
         <p
           key={index}
-          className="cs-fade-in mt-2 max-w-[820px] font-serif text-[24px] leading-[1.25] font-light text-lampblack md:text-[28px]"
+          className="cs-fade-in mt-2 max-w-[820px] font-serif text-[24px] leading-[1.25] font-light tracking-[-0.02em] text-lampblack md:text-[28px]"
         >
           {active.query}
         </p>
@@ -110,7 +110,13 @@ export function BiasDemo() {
           ))}
         </div>
 
-        <p className="mt-6 max-w-[720px] text-caption text-slate-pencil">
+        <p className="mt-6 max-w-[760px] text-[12px] leading-[1.5] text-slate-pencil">
+          <span className="font-semibold text-steel">Fig. 2</span> One query,
+          three production models, three different treatments, with no record of
+          which rule produced each, or why.
+        </p>
+
+        <p className="mt-3 max-w-[720px] text-caption text-slate-pencil">
           Responses sampled in October 2025. Refusal asymmetries documented in
           BorderLines (2024) and ToxiGen (2024). Full benchmark in development.
         </p>

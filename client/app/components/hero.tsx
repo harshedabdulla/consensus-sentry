@@ -18,7 +18,7 @@ export function Hero() {
           A research project on AI accountability infrastructure
         </p>
 
-        <h1 className="mt-4 font-serif text-[36px] font-light leading-[1.10] text-white md:text-[54px]">
+        <h1 className="mt-4 font-serif text-[36px] font-light leading-[1.10] tracking-[-0.02em] text-white md:text-[54px]">
           Verifiable infrastructure for AI guardrails.
         </h1>
 

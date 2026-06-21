@@ -35,10 +35,17 @@ const sutras = [
 
 export function Sutras() {
   return (
-    <section className="px-6 pt-28 md:pt-40">
+    <section id="principles" className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="max-w-[880px] font-serif text-[42px] leading-[1.10] font-light text-lampblack md:text-[48px]">
-          Grounded in real governance principles.
+        <h2 className="max-w-[880px] font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-lampblack md:text-[48px]">
+          Grounded in real{" "}
+          <a
+            href="#contributions"
+            className="text-violet-ink underline decoration-1 underline-offset-[4px] decoration-violet-ink/40 transition-colors hover:decoration-violet-ink"
+          >
+            governance principles
+          </a>
+          .
         </h2>
 
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
