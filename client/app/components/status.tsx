@@ -18,36 +18,6 @@ const phases: Phase[] = [
       weight: 500,
     },
   },
-  {
-    label: "Phase 02",
-    description: "Empirical benchmark of contested topics",
-    status: "Design",
-    tone: {
-      dot: "var(--color-slate-pencil)",
-      label: "var(--color-steel)",
-      weight: 400,
-    },
-  },
-  {
-    label: "Phase 03",
-    description: "Attestation layer reference implementation",
-    status: "Planned",
-    tone: {
-      dot: "var(--color-fog-line)",
-      label: "var(--color-slate-pencil)",
-      weight: 400,
-    },
-  },
-  {
-    label: "Phase 04",
-    description: "Pilot deployment and independent audit",
-    status: "Future",
-    tone: {
-      dot: "var(--color-fog-line)",
-      label: "var(--color-slate-pencil)",
-      weight: 400,
-    },
-  },
 ];
 
 export function Status() {
@@ -58,7 +28,7 @@ export function Status() {
           Where we are.
         </h2>
         <p className="mt-6 text-[15px] leading-[1.65] text-steel">
-          Early-stage research. We are publishing as we go.
+          Only the first file is open.
         </p>
 
         <div className="mt-12 flex flex-col">

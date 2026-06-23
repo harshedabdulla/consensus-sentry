@@ -143,15 +143,11 @@ export function Problem() {
               <div className="mt-8 space-y-6 text-[15px] leading-[1.65] text-steel">
                 <p>
                   Every day, AI systems refuse questions, hedge on contested
-                  topics, and treat two equivalent queries differently. These are
-                  moderation decisions, but they are invisible. There is no
-                  mechanism for the person affected, or anyone else, to verify
-                  which rule was applied, who authored it, when it last changed,
-                  or whether other people were treated the same way.
+                  topics, and treat equivalent queries differently. The decision
+                  disappears the moment it is made.
                 </p>
                 <p className="font-semibold text-lampblack">
-                  The bias is real and measurable. The accountability layer is
-                  not. This project builds that layer.
+                  The bias is visible. The record is missing.
                 </p>
               </div>
             </div>

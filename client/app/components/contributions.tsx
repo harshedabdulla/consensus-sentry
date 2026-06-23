@@ -4,19 +4,19 @@ const contributions = [
   {
     eyebrow: "empirical",
     heading: "A benchmark for contested topics",
-    body: "50 to 100 prompts across territorial disputes, religious history, social issues, and regional language coverage, evaluated across major language models. Built to surface and quantify refusal asymmetries that current moderation cannot account for.",
+    body: "The same questions, asked across many models.",
     footer: "In development",
   },
   {
     eyebrow: "technical",
     heading: "A verifiable attestation layer",
-    body: "Every guardrail decision carries a signed record of which rule was applied, what version, to which input, with what rationale. Any party can verify cryptographically what actually happened. Designed to extend existing open-source guardrail frameworks, not replace them.",
+    body: "A signed record for every guardrail decision.",
     footer: "Planned",
   },
   {
     eyebrow: "institutional",
     heading: "A multi-stakeholder governance model",
-    body: "Rulesets authored by chartered review panels with declared diverse backgrounds: legal, ethics, regional and linguistic representation, civil society, technical experts. Not citizen voting on ethics. Constitutional process with verifiable transparency.",
+    body: "Rules that reveal who authored them.",
     footer: "Planned",
   },
 ];
@@ -29,7 +29,7 @@ export function Contributions() {
           Three contributions.
         </h2>
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
-          The project has three deliverables, sequenced. Each stands on its own.
+          Three artifacts. One accountability layer.
         </p>
 
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">

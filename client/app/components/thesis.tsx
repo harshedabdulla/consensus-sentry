@@ -14,9 +14,9 @@ export function Thesis() {
           The thesis
         </p>
         <p className="mt-6 font-serif text-[28px] leading-[1.3] font-light tracking-[-0.02em] text-lampblack md:text-[34px]">
-          We believe every AI moderation decision should carry proof of which
-          rule fired, who authored it, and whether you were treated the same as
-          everyone else, so bias can be{" "}
+          Every AI moderation decision should carry proof: which rule fired, who
+          authored it, and whether the same question was treated the same way.
+          Then bias can be{" "}
           <a href="#demo" className={HEADLINE_LINK}>
             measured
           </a>

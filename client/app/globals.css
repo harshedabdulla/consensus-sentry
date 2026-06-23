@@ -8,26 +8,28 @@
   styles — e.g. the bias-demo status dots use var(--color-hudson-blue).
 */
 @theme {
-  /* ── Color tokens fused from DESIGN.md (mapped to original names for backward compatibility) ── */
-  --color-paper-white: #ffffff;      /* Paper: elevated surfaces */
-  --color-marble-canvas: #fefffc;    /* Cream: dominant warm off-white canvas background */
-  --color-bone-mist: #dee2de;        /* Sage: hairline card borders, dividers */
-  --color-fog-line: #dee2de;         /* Sage: input outlines, boundaries */
-  --color-slate-pencil: #646464;     /* Steel: muted helper text, captions */
-  --color-steel: #444141;            /* Iron: body text on canvas */
-  --color-lampblack: #171717;        /* Ink: headings and primary dark text */
-  --color-graphite: #2c2c2c;         /* Carbon: secondary dark UI/hover elements */
-  --color-carbon-black: #1f1f29;     /* Obsidian: primary black buttons */
-  --color-hudson-blue: #0081c0;      /* Hudson Blue: the single chromatic accent for inline links and proof states */
-  --color-violet-ink: #0081c0;       /* Backward-compatible alias for Hudson Blue */
-  --color-sky-wash: #95d0ff;         /* Reserved — do not use in Phase 1 */
+  /* ── Palette trial: https://coolors.co/palette/011627-fdfffc-2ec4b6-e71d36-ff9f1c ── */
+  --color-paper-white: #ffffff;      /* Elevated surfaces */
+  --color-marble-canvas: #fdfffc;    /* Baby Powder: page canvas */
+  --color-bone-mist: #dbe7e4;        /* Cool hairline derived from the palette */
+  --color-fog-line: #dbe7e4;         /* Input outlines, boundaries */
+  --color-slate-pencil: #5d7477;     /* Muted helper text with teal undertone */
+  --color-steel: #334c52;            /* Secondary body text */
+  --color-lampblack: #011627;        /* Rich Black: headings and primary dark text */
+  --color-graphite: #0a2636;         /* Secondary dark UI/hover elements */
+  --color-carbon-black: #011627;     /* Primary black/nav/button surface */
+  --color-hudson-blue: #2ec4b6;      /* Tiffany Blue: proof accent and inline links */
+  --color-violet-ink: #2ec4b6;       /* Backward-compatible alias for the proof accent */
+  --color-sky-wash: #e8f7f5;         /* Pale teal wash */
+  --color-signal-red: #e71d36;       /* Refusal signal, used sparingly */
+  --color-signal-amber: #ff9f1c;     /* Hedge signal, used sparingly */
 
-  /* ── Extra colors explicitly named from DESIGN.md ── */
-  --color-design-hudson-blue: #0081c0;
-  --color-design-slate-cyan: #41a1cf;
-  --color-design-graphite-night: #282834;
-  --color-design-linen: #f9faf7;
-  --color-design-sage: #dee2de;
+  /* ── Backward-compatible aliases named from DESIGN.md ── */
+  --color-design-hudson-blue: #2ec4b6;
+  --color-design-slate-cyan: #2ec4b6;
+  --color-design-graphite-night: #011627;
+  --color-design-linen: #f4fbf8;
+  --color-design-sage: #dbe7e4;
 
   /* ── Fonts (wired to next/font CSS variables set on <html>) ───────── */
   --font-sans: var(--font-inter);
@@ -59,8 +61,8 @@
   --shadow-elevated: 0 2px 2px 0 rgba(0, 0, 0, 0.06), 0 0 0 5px rgba(0, 0, 0, 0.04); /* --shadow-subtle-3 */
   --shadow-design-sm: 0 2px 6px 0 rgba(0, 0, 0, 0.15); /* --shadow-sm */
   --shadow-glow:
-    0 0 0 1px rgba(0, 129, 192, 0.14),
-    0 10px 28px 0 rgba(0, 129, 192, 0.18);
+    0 0 0 1px rgba(46, 196, 182, 0.16),
+    0 10px 28px 0 rgba(46, 196, 182, 0.2);
 }
 
 /*
@@ -153,18 +155,18 @@
 }
 
 @keyframes pulse-ring {
-  /* Hudson Blue (#0081c0 = rgb(0,129,192)) — the diagram/live-status accent. */
+  /* Tiffany Blue (#2ec4b6 = rgb(46,196,182)) — the diagram/live-status accent. */
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 129, 192, 0.4);
+    box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.42);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(0, 129, 192, 0);
+    box-shadow: 0 0 0 6px rgba(46, 196, 182, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 129, 192, 0);
+    box-shadow: 0 0 0 0 rgba(46, 196, 182, 0);
   }
 }
 

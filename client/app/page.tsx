@@ -4,7 +4,6 @@ import { Thesis } from "./components/thesis";
 import { Problem } from "./components/problem";
 import { BiasDemo } from "./components/bias-demo";
 import { Contributions } from "./components/contributions";
-import { Sutras } from "./components/sutras";
 import { Status } from "./components/status";
 import { GetInvolved } from "./components/get-involved";
 import { Footer } from "./components/footer";
@@ -28,9 +27,6 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Contributions />
-        </Reveal>
-        <Reveal>
-          <Sutras />
         </Reveal>
         <Reveal>
           <Status />

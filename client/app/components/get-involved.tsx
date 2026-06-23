@@ -17,28 +17,28 @@ const blocks: Block[] = [
   {
     eyebrow: "for readers",
     heading: "Read the research",
-    body: "The full research statement, problem framing, and threat model.",
+    body: "The first public note.",
     linkText: "Coming soon",
     mutedColor: "text-slate-pencil/60",
   },
   {
     eyebrow: "for researchers",
     heading: "See the benchmark",
-    body: "Methodology, prompts, models, and results as they become available.",
+    body: "The comparison set, still forming.",
     linkText: "In development",
     mutedColor: "text-steel/70",
   },
   {
     eyebrow: "for developers",
     heading: "View the repository",
-    body: "Source for the landing page and, eventually, the reference implementation.",
+    body: "The workbench.",
     linkText: "github.com/harshedabdulla/consensus-sentry",
     href: REPO_URL,
   },
   {
     eyebrow: "for collaborators",
     heading: "Start a conversation",
-    body: "Research collaboration, faculty advisors, civil society engagement. Open a discussion on GitHub.",
+    body: "For people who see the gap too.",
     linkText: "Open a discussion",
     href: DISCUSSIONS_URL,
   },
@@ -52,8 +52,7 @@ export function GetInvolved() {
           Four ways in.
         </h2>
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
-          Whether you read papers, run code, or work on policy, there is
-          something here for you.
+          A few doors. Most of the building is still quiet.
         </p>
 
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">

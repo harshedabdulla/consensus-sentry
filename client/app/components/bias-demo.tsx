@@ -34,9 +34,7 @@ export function BiasDemo() {
           What the gap looks like.
         </h3>
         <p className="mt-3 max-w-[720px] text-body leading-[1.6] text-steel">
-          Pick one of the two highest-variance contested queries and compare how
-          six production language models respond. Same question, different
-          treatment, with no record of why.
+          Two queries. Six models. Different treatment, no visible rule.
         </p>
 
         {/* Animated segmented selector */}
@@ -112,14 +110,12 @@ export function BiasDemo() {
         </div>
 
         <p className="mt-6 max-w-[760px] text-[12px] leading-[1.5] text-slate-pencil">
-          <span className="font-semibold text-steel">Fig. 2</span> One query,
-          six production models, different treatments, with no record of which
-          rule produced each, or why.
+          <span className="font-semibold text-steel">Fig. 2</span> The same
+          prompt can become an answer, a hedge, or a refusal.
         </p>
 
         <p className="mt-3 max-w-[720px] text-caption text-slate-pencil">
-          Prototype comparison set. Refusal asymmetries documented in BorderLines
-          (2024) and ToxiGen (2024). Full benchmark in development.
+          Prototype comparison set. Full benchmark in development.
         </p>
       </div>
     </section>

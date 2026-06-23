@@ -1,6 +1,5 @@
-// Semantic state tags. The system is 95% monochrome with one violet accent —
-// no red/yellow/green. Each tag is a 6px solid dot + an Inter 11px/600 label,
-// distinguished by dot color and label color only (see CLAUDE.md).
+// Semantic state tags. The palette stays quiet everywhere else, so the warm
+// colors are reserved for these tiny model-behavior signals.
 
 export type BiasVariant = "refused" | "hedged" | "answered";
 
@@ -16,18 +15,18 @@ export type Tone = {
 // The three bias-demo states.
 const BIAS_TONES: Record<BiasVariant, Tone> = {
   refused: {
-    dot: "var(--color-carbon-black)",
-    label: "var(--color-lampblack)",
+    dot: "var(--color-signal-red)",
+    label: "var(--color-signal-red)",
     weight: 600,
   },
   hedged: {
-    dot: "var(--color-slate-pencil)",
+    dot: "var(--color-signal-amber)",
     label: "var(--color-steel)",
     weight: 600,
   },
   answered: {
-    dot: "var(--color-violet-ink)",
-    label: "var(--color-violet-ink)",
+    dot: "var(--color-hudson-blue)",
+    label: "var(--color-hudson-blue)",
     weight: 600,
   },
 };
