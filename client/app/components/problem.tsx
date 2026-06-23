@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Shield, Key, FileText, Check } from "lucide-react";
+import { GlyphWallpaper } from "./ui/glyph-wallpaper";
 
 /*
   Scrollytelling section. The left thesis column is pinned (sticky) while the
@@ -148,14 +149,6 @@ export function Problem() {
                   which rule was applied, who authored it, when it last changed,
                   or whether other people were treated the same way.
                 </p>
-                <p>
-                  Governments have begun writing the principles down. India&rsquo;s
-                  AI Governance Guidelines (MeitY, November 2025) name
-                  Transparency, Accountability, and &ldquo;Understandable by
-                  Design&rdquo;; other jurisdictions are converging on the same
-                  ground. The principles are sound. The technical means to
-                  enforce, audit, or contest them in practice do not yet exist.
-                </p>
                 <p className="font-semibold text-lampblack">
                   The bias is real and measurable. The accountability layer is
                   not. This project builds that layer.
@@ -165,7 +158,10 @@ export function Problem() {
 
             {/* Right Column: scroll-driven technical diagram */}
             <div className="lg:col-span-5">
-              <div className="flex flex-col rounded-card border border-bone-mist bg-paper-white p-6 shadow-card">
+              <div className="relative flex flex-col overflow-hidden rounded-card border border-bone-mist bg-paper-white p-6 shadow-card">
+                <GlyphWallpaper variant="surface" className="opacity-[0.08]" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.94)_42%,rgba(255,255,255,0.98))]" />
+                <div className="relative">
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-semibold tracking-[0.08em] text-slate-pencil uppercase">
                     Technical Architecture
@@ -217,8 +213,10 @@ export function Problem() {
                 </div>
 
                 {/* SVG canvas */}
-                <div className="relative mt-6 flex justify-center py-6 bg-design-linen rounded-tag border border-bone-mist/60 overflow-hidden">
-                  <svg viewBox="0 0 400 180" className="w-full max-w-[340px] overflow-visible">
+                <div className="relative mt-6 flex justify-center overflow-hidden rounded-tag border border-bone-mist/60 bg-design-linen py-6">
+                  <GlyphWallpaper variant="surface" className="opacity-[0.12]" />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.78),rgba(249,250,247,0.92)_62%,rgba(249,250,247,0.98))]" />
+                  <svg viewBox="0 0 400 180" className="relative z-10 w-full max-w-[340px] overflow-visible">
                     <defs>
                       <pattern id="dot-grid" width="16" height="16" patternUnits="userSpaceOnUse">
                         <circle cx="2" cy="2" r="0.75" fill="var(--color-bone-mist)" opacity="0.4" />
@@ -461,6 +459,7 @@ export function Problem() {
                       </li>
                     ))}
                   </ul>
+                </div>
                 </div>
               </div>
             </div>

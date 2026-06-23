@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock } from "lucide-react";
+import { Clock, ShieldCheck } from "lucide-react";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const DISCUSSIONS_URL = `${REPO_URL}/discussions`;
@@ -13,13 +13,13 @@ function NavComingSoon({ label }: { label: string }) {
         role="link"
         aria-disabled="true"
         tabIndex={0}
-        className="cursor-default text-[13px] font-medium text-slate-pencil/60 transition-colors hover:text-slate-pencil"
+        className="cursor-default text-[13px] font-medium text-white/[0.58] transition-colors hover:text-white/[0.82]"
       >
         {label}
       </span>
       <span
         role="tooltip"
-        className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 rounded-tag border border-bone-mist bg-paper-white px-3 py-1 text-caption whitespace-nowrap text-steel opacity-0 shadow-card transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 z-50"
+        className="pointer-events-none absolute -bottom-9 left-1/2 z-50 -translate-x-1/2 rounded-tag border border-bone-mist bg-paper-white px-3 py-1 text-caption whitespace-nowrap text-steel opacity-0 shadow-card transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
       >
         Coming soon
       </span>
@@ -50,18 +50,19 @@ export function HeaderNav() {
 
   return (
     <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
-      <header className="mx-auto max-w-[860px] rounded-full border border-bone-mist/80 bg-white/70 px-4 py-2.5 shadow-design-sm backdrop-blur-md md:px-6">
+      <header className="mx-auto max-w-[880px] rounded-full border border-white/10 bg-design-graphite-night/[0.94] px-3 py-2 shadow-design-sm backdrop-blur-md md:px-4">
         <nav className="flex items-center justify-between gap-4">
-          {/* Logo Section */}
           <a
             href="#top"
-            className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-lampblack transition-opacity hover:opacity-90"
+            className="flex min-w-0 items-center gap-2 text-[14px] font-semibold tracking-tight text-paper-white transition-opacity hover:opacity-90"
           >
+            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.07] text-white">
+              <ShieldCheck size={15} strokeWidth={1.7} />
+            </span>
             <span className="hidden sm:inline">Consensus Sentry</span>
             <span className="sm:hidden text-xs">C. Sentry</span>
           </a>
 
-          {/* Links Section */}
           <div className="flex items-center gap-6 md:gap-8">
             <NavComingSoon label="Research" />
             <NavComingSoon label="Benchmark" />
@@ -69,17 +70,16 @@ export function HeaderNav() {
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[13px] font-medium text-steel no-underline transition-colors hover:text-lampblack"
+              className="text-[13px] font-medium text-white/[0.74] no-underline transition-colors hover:text-white"
             >
               Repository
             </a>
           </div>
 
-          {/* Clock & Contact CTA */}
           <div className="flex items-center gap-3 md:gap-4">
             {time && (
-              <div className="hidden items-center gap-1.5 text-[12px] font-medium text-steel md:flex">
-                <Clock size={12} strokeWidth={1.5} className="text-slate-pencil" />
+              <div className="hidden items-center gap-1.5 text-[12px] font-medium text-white/[0.66] md:flex">
+                <Clock size={12} strokeWidth={1.5} className="text-white/[0.52]" />
                 <span>{time}</span>
               </div>
             )}
@@ -88,7 +88,7 @@ export function HeaderNav() {
               href={DISCUSSIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-lampblack px-3.5 py-1.5 text-[12px] font-semibold text-paper-white transition-all duration-150 hover:bg-graphite active:scale-95 whitespace-nowrap"
+              className="inline-flex items-center justify-center rounded-tag border border-white/[0.12] bg-carbon-black px-3.5 py-1.5 text-[12px] font-semibold whitespace-nowrap text-paper-white transition-all duration-150 hover:bg-black active:scale-95"
             >
               Get in touch
             </a>

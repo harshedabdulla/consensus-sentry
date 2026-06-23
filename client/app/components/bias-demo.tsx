@@ -34,8 +34,9 @@ export function BiasDemo() {
           What the gap looks like.
         </h3>
         <p className="mt-3 max-w-[720px] text-body leading-[1.6] text-steel">
-          Pick a contested query and compare how three production language models
-          respond. Same question, different treatment, with no record of why.
+          Pick one of the two highest-variance contested queries and compare how
+          six production language models respond. Same question, different
+          treatment, with no record of why.
         </p>
 
         {/* Animated segmented selector */}
@@ -87,7 +88,7 @@ export function BiasDemo() {
           {active.query}
         </p>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {active.responses.map((response, i) => (
             <article
               // Keying on the active query remounts each card so it fades in
@@ -112,13 +113,13 @@ export function BiasDemo() {
 
         <p className="mt-6 max-w-[760px] text-[12px] leading-[1.5] text-slate-pencil">
           <span className="font-semibold text-steel">Fig. 2</span> One query,
-          three production models, three different treatments, with no record of
-          which rule produced each, or why.
+          six production models, different treatments, with no record of which
+          rule produced each, or why.
         </p>
 
         <p className="mt-3 max-w-[720px] text-caption text-slate-pencil">
-          Responses sampled in October 2025. Refusal asymmetries documented in
-          BorderLines (2024) and ToxiGen (2024). Full benchmark in development.
+          Prototype comparison set. Refusal asymmetries documented in BorderLines
+          (2024) and ToxiGen (2024). Full benchmark in development.
         </p>
       </div>
     </section>

@@ -31,8 +31,7 @@ const baseClasses =
   "inline-flex items-center justify-center rounded-pill px-6 py-3 text-body font-semibold leading-none transition-colors duration-150 whitespace-nowrap";
 
 const variantClasses: Record<Variant, string> = {
-  // Primary CTA: matte black fill, white text, dual-tone glow (the only
-  // colorful shadow in the system).
+  // Primary CTA: matte black fill, white text, with a restrained blue proof halo.
   primary:
     "bg-carbon-black text-paper-white shadow-[var(--shadow-glow)] hover:bg-graphite",
   // Ghost: white fill, 1.5px black border, black text, no shadow.
