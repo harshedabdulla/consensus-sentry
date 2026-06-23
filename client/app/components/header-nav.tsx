@@ -51,8 +51,8 @@ export function HeaderNav() {
   return (
     <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
       <header className="mx-auto max-w-[880px] rounded-2xl border border-white/10 bg-design-graphite-night/[0.94] px-3 py-2.5 shadow-design-sm backdrop-blur-md md:rounded-full md:px-4 md:py-2">
-        <nav className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-4">
-          <div className="flex items-center justify-between gap-3 md:min-w-0 md:flex-1 md:justify-start">
+        <nav className="flex items-center justify-between gap-3 md:gap-4">
+          <div className="flex min-w-0 items-center gap-2 md:flex-1 md:justify-start">
             <a
               href="#top"
               className="flex min-w-0 items-center gap-2 text-[14px] font-semibold tracking-tight text-paper-white transition-opacity hover:opacity-90"
@@ -63,18 +63,9 @@ export function HeaderNav() {
               <span className="hidden sm:inline">Consensus Sentry</span>
               <span className="text-xs sm:hidden">C. Sentry</span>
             </a>
-
-            <a
-              href={DISCUSSIONS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-tag border border-white/[0.12] bg-carbon-black px-3 py-1.5 text-[12px] font-semibold whitespace-nowrap text-paper-white transition-all duration-150 hover:bg-black active:scale-95 md:hidden"
-            >
-              Contact
-            </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-8">
+          <div className="hidden flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex md:gap-x-8">
             <NavComingSoon label="Research" />
             <NavComingSoon label="Benchmark" />
             <a
@@ -87,7 +78,16 @@ export function HeaderNav() {
             </a>
           </div>
 
-          <div className="hidden items-center justify-end gap-3 md:flex md:gap-4">
+          <div className="flex items-center justify-end gap-3 md:gap-4">
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[13px] font-medium text-white/[0.74] no-underline transition-colors hover:text-white md:hidden"
+            >
+              Repository
+            </a>
+
             {time && (
               <div className="hidden items-center gap-1.5 text-[12px] font-medium text-white/[0.66] md:flex">
                 <Clock size={12} strokeWidth={1.5} className="text-white/[0.52]" />
