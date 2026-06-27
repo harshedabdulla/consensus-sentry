@@ -4,9 +4,9 @@
 export type BiasVariant = "refused" | "hedged" | "answered";
 
 export type Tone = {
-  /** Dot color — a CSS color, typically a var(--color-*). */
+  /** Dot color - a CSS color, typically a var(--color-*). */
   dot: string;
-  /** Label color — a CSS color, typically a var(--color-*). */
+  /** Label color - a CSS color, typically a var(--color-*). */
   label: string;
   /** Font weight for the label. */
   weight: number;
@@ -42,7 +42,7 @@ type StatusTagProps = {
   variant?: BiasVariant;
   /** Override the displayed label text (defaults to the variant name). */
   label?: string;
-  /** Fully custom tone — used by the phase table, which has its own palette. */
+  /** Fully custom tone - used by the phase table, which has its own palette. */
   tone?: Tone;
   className?: string;
 };

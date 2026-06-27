@@ -18,7 +18,7 @@ const blocks: Block[] = [
   {
     eyebrow: "for readers",
     heading: "Read the research",
-    body: "The first public note — the argument, in full.",
+    body: "The first public note: the argument, in full.",
     linkText: "Read the research",
     status: "Coming soon",
   },
@@ -32,7 +32,7 @@ const blocks: Block[] = [
   {
     eyebrow: "for developers",
     heading: "View the repository",
-    body: "The workbench — code, issues, and the build in the open.",
+    body: "The workbench: code, issues, and the build in the open.",
     linkText: "github.com/harshedabdulla/consensus-sentry",
     href: REPO_URL,
   },
@@ -49,17 +49,14 @@ export function GetInvolved() {
   return (
     <section className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
-          Get involved
-        </p>
-        <h2 className="mt-4 font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
+        <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
           Four ways in.
         </h2>
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
           A few doors. Most of the building is still quiet.
         </p>
 
-        {/* A directory of interactive rows — the whole row is the affordance.
+        {/* A directory of interactive rows - the whole row is the affordance.
             Live entries carry an arrow that slides on hover; entries without a
             destination yet show a muted status instead. Deliberately unlike the
             principles list and the numbered contributions above it. */}
@@ -78,14 +75,14 @@ export function GetInvolved() {
                   <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
                     {block.eyebrow}
                   </p>
-                  <h3 className="mt-2 text-[22px] font-medium leading-[1.2] text-lampblack transition-colors group-hover:text-design-hudson-blue">
+                  <h3 className="mt-2 text-[20px] font-medium leading-[1.2] text-lampblack transition-colors group-hover:text-design-hudson-blue">
                     {block.heading}
                   </h3>
                   <p className="mt-2 text-[14px] leading-[1.6] text-steel">
                     {block.body}
                   </p>
                   {block.href && (
-                    <span className="mt-3 inline-block break-all text-[12.5px] text-slate-pencil">
+                    <span className="mt-3 inline-block break-all text-[12px] text-slate-pencil">
                       {block.linkText}
                     </span>
                   )}

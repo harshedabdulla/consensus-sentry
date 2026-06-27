@@ -2,10 +2,7 @@ export function Status() {
   return (
     <section className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[760px]">
-        <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
-          Roadmap
-        </p>
-        <h2 className="mt-4 font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
+        <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
           Where we are.
         </h2>
         <p className="mt-6 max-w-[620px] text-[15px] leading-[1.65] text-steel">
@@ -14,7 +11,7 @@ export function Status() {
         </p>
 
         <ol className="mt-14">
-          {/* Phase 01 — the one open file. */}
+          {/* Phase 01 - the one open file. */}
           <li className="grid grid-cols-[12px_1fr] gap-x-5">
             <div className="relative flex justify-center">
               {/* Solid rail under the active node, fading into the dashed tail. */}
@@ -50,7 +47,7 @@ export function Status() {
             </div>
           </li>
 
-          {/* The tail — deliberately undisclosed. A dashed rail trailing into a
+          {/* The tail - deliberately undisclosed. A dashed rail trailing into a
               hollow marker; the rest of the plan is kept under wraps. */}
           <li className="grid grid-cols-[12px_1fr] gap-x-5">
             <div className="relative flex justify-center">

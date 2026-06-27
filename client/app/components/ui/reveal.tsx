@@ -11,7 +11,7 @@ type RevealProps = {
 
 /**
  * Reveals its children with a quiet fade-and-rise the first time they scroll
- * into view — the single sanctioned scroll animation (see CLAUDE.md). Motion is
+ * into view - the single sanctioned scroll animation (see CLAUDE.md). Motion is
  * expressed only through Tailwind `motion-safe:` variants, so users who prefer
  * reduced motion get the content immediately, fully visible, with no transform.
  */

@@ -8,7 +8,7 @@ type BaseProps = {
   /**
    * When set, the control renders as a non-activatable, focusable element
    * (aria-disabled) with a tooltip. Used for "Coming soon" CTAs so they stay
-   * keyboard-reachable and the tooltip is discoverable — unlike a hard
+   * keyboard-reachable and the tooltip is discoverable - unlike a hard
    * `disabled` attribute, which removes the element from the tab order and
    * suppresses hover/focus events the tooltip relies on.
    */

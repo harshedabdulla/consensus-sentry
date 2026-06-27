@@ -10,10 +10,10 @@ import { GlyphWallpaper } from "./ui/glyph-wallpaper";
   pipeline phase at a time, each with its own larger "under the hood" scene
   and a short detail list, ending in a verified "completed" state.
 
-  step 0 — Prompt ingress        (the query is captured and intercepted)
-  step 1 — Rule evaluation       (the ruleset is scanned, a rule fires)
-  step 2 — Attestation signature (the decision is hashed and signed)
-  step 3 — Pipeline verified     (the signed provenance record is sealed)
+  step 0 - Prompt ingress        (the query is captured and intercepted)
+  step 1 - Rule evaluation       (the ruleset is scanned, a rule fires)
+  step 2 - Attestation signature (the decision is hashed and signed)
+  step 3 - Pipeline verified     (the signed provenance record is sealed)
 */
 
 const ICONS = [FileText, Shield, Key, Check] as const;
@@ -43,7 +43,7 @@ const STEPS: Step[] = [
     n: "2",
     label: "Evaluate",
     title: "Rule evaluation",
-    body: "The active ruleset is scanned. One rule fires and sets the decision — Refused, Hedged, or Answered.",
+    body: "The active ruleset is scanned. One rule fires and sets the decision: Refused, Hedged, or Answered.",
     details: [
       "Ruleset v2.3 loaded · 142 rules",
       "Match → refusal.contested.v4",
@@ -54,7 +54,7 @@ const STEPS: Step[] = [
     n: "3",
     label: "Attest",
     title: "Attestation signature",
-    body: "The decision is canonicalized, hashed, and signed — so anyone can verify which rule fired and when.",
+    body: "The decision is canonicalized, hashed, and signed, so anyone can verify which rule fired and when.",
     details: [
       "Decision canonicalized & hashed",
       "Signed with the author key",
@@ -137,7 +137,7 @@ export function Problem() {
       <div ref={trackRef} className="relative mx-auto max-w-[1100px] lg:h-[380vh]">
         <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center">
           <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
-            {/* Left Column: pinned thesis — stands as it is while scrolling */}
+            {/* Left Column: pinned thesis - stands as it is while scrolling */}
             <div className="lg:col-span-6">
               <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
                 Principles exist. Infrastructure does not.
@@ -164,7 +164,7 @@ export function Problem() {
                 <div className="relative">
                   {/* Header */}
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-semibold tracking-[0.08em] text-slate-pencil uppercase">
+                    <span className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
                       Technical Architecture
                     </span>
                     {done ? (
@@ -180,7 +180,7 @@ export function Problem() {
                     )}
                   </div>
 
-                  {/* Pipeline map — small, for orientation. Lights up the live node. */}
+                  {/* Pipeline map - small, for orientation. Lights up the live node. */}
                   <div className="mt-6 flex items-center">
                     {STEPS.map((s, i) => {
                       const Icon = ICONS[i];
@@ -226,7 +226,7 @@ export function Problem() {
                     })}
                   </div>
 
-                  {/* The larger per-phase stage — one scene at a time. Keyed on
+                  {/* The larger per-phase stage - one scene at a time. Keyed on
                       the step so each scene remounts and replays its entrance. */}
                   <div
                     key={step}
@@ -238,12 +238,12 @@ export function Problem() {
 
                   {/* Figure caption */}
                   <p className="mt-4 text-[12px] leading-[1.5] text-slate-pencil">
-                    <span className="font-semibold text-steel">Fig. 1</span> — The
+                    <span className="font-semibold text-steel">Fig. 1</span>. The
                     verifiable guardrail pipeline, one phase at a time. Every
                     decision produces a signed, externally auditable record.
                   </p>
 
-                  {/* Under-the-hood detail — desktop: scroll-synced single phase */}
+                  {/* Under-the-hood detail - desktop: scroll-synced single phase */}
                   <div
                     key={`copy-${step}`}
                     className="mt-6 hidden cs-fade-in lg:block"
@@ -260,14 +260,14 @@ export function Problem() {
                       </span>
                       {active.title}
                     </h3>
-                    <p className="mt-2 text-[12.5px] leading-relaxed text-steel">
+                    <p className="mt-2 text-[12px] leading-relaxed text-steel">
                       {active.body}
                     </p>
                     <ul className="mt-3 space-y-1.5">
                       {active.details.map((d) => (
                         <li
                           key={d}
-                          className="flex items-center gap-2 text-[11.5px] text-steel"
+                          className="flex items-center gap-2 text-[12px] text-steel"
                         >
                           {done ? (
                             <Check
@@ -294,7 +294,7 @@ export function Problem() {
                           </span>
                           {s.title}
                         </h3>
-                        <p className="mt-1.5 text-[12.5px] leading-relaxed text-steel">
+                        <p className="mt-1.5 text-[12px] leading-relaxed text-steel">
                           {s.body}
                         </p>
                       </li>
@@ -505,7 +505,7 @@ function SceneEvaluate() {
         })}
       </g>
 
-      {/* Decision chip — stamps in */}
+      {/* Decision chip - stamps in */}
       <path
         d="M 230 100 L 248 100"
         fill="none"

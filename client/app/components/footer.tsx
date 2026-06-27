@@ -1,7 +1,7 @@
 "use client";
 
 // lucide-react 1.x removed brand marks (no Github icon). Per the design rules
-// (Lucide outline icons only — no inline brand SVGs), GitBranch is the faithful
+// (Lucide outline icons only - no inline brand SVGs), GitBranch is the faithful
 // repository-semantic substitute. The aria-label makes the destination clear.
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Clock, GitBranch, MessagesSquare } from "lucide-react";
@@ -68,8 +68,8 @@ export function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(216,158,96,0.30),transparent_50%),linear-gradient(180deg,rgba(36,26,16,0.34),rgba(36,26,16,0.58))]" />
 
       <div className="relative mx-auto max-w-[1200px]">
-        {/* Closing statement — a last large display beat in the brand serif. */}
-        <h2 className="max-w-[760px] font-serif text-[30px] leading-[1.12] font-light tracking-[-0.02em] text-balance text-white md:text-[44px]">
+        {/* Closing statement - a last large display beat in the brand serif. */}
+        <h2 className="max-w-[760px] font-serif text-[28px] leading-[1.25] font-light tracking-[-0.02em] text-balance text-white md:text-[34px]">
           Every refusal should{" "}
           <a
             href="#top"
@@ -137,7 +137,7 @@ export function Footer() {
             </p>
             <div className="mt-4 flex items-center gap-1.5 text-[13px] text-white/75 md:justify-end">
               <Clock size={13} strokeWidth={1.5} className="text-white/50" />
-              <span className="tabular-nums">{time || "— DEL"}</span>
+              <span className="tabular-nums">{time || "DEL"}</span>
             </div>
           </div>
         </div>

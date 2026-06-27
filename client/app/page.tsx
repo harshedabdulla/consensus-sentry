@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <HeaderNav />
       <main id="main">
-        {/* Hero is above the fold — shown immediately, no reveal. */}
+        {/* Hero is above the fold - shown immediately, no reveal. */}
         <Hero />
         <Reveal>
           <Thesis />

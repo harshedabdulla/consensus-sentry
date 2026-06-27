@@ -9,7 +9,7 @@ export function BiasDemo() {
   const active = biasExamples[index];
 
   // Sliding "thumb" behind the active topic. We measure the active button's
-  // box and animate the thumb's left/width to it — the signature interaction.
+  // box and animate the thumb's left/width to it - the signature interaction.
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [thumb, setThumb] = useState<{ left: number; width: number } | null>(
     null,
@@ -81,7 +81,7 @@ export function BiasDemo() {
         </p>
         <p
           key={index}
-          className="cs-fade-in mt-2 max-w-[820px] font-serif text-[24px] leading-[1.25] font-light tracking-[-0.02em] text-lampblack md:text-[28px]"
+          className="cs-fade-in mt-2 max-w-[820px] font-serif text-[28px] leading-[1.25] font-light tracking-[-0.02em] text-lampblack md:text-[34px]"
         >
           {active.query}
         </p>

@@ -41,14 +41,11 @@ export function Sutras() {
     <section id="principles" className="px-6 pt-28 md:pt-40">
       {/* Editorial 2-column (DESIGN.md): display heading + intro pinned on the
           left, the seven principles as a reading-first numbered list on the
-          right — hairline dividers, not a card grid. */}
+          right - hairline dividers, not a card grid. */}
       <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
-            <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
-              The principles
-            </p>
-            <h2 className="mt-4 max-w-[440px] font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
+            <h2 className="max-w-[440px] font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
               Grounded in real{" "}
               <a href="#contributions" className={HEADLINE_LINK}>
                 governance principles

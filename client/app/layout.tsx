@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-// Display serif — the brand's most recognizable element. Loaded as a variable
+// Display serif - the brand's most recognizable element. Loaded as a variable
 // font so the signature whisper weight (300) is guaranteed available; we only
 // ever render it at font-weight 300.
 const fraunces = Fraunces({

@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 /*
-  Consensus Sentry design tokens — "Editorial civic infrastructure".
+  Consensus Sentry design tokens - "Editorial civic infrastructure".
   All values are governed by CLAUDE.md. Do not add colors outside the eleven
   tokens below. Color tokens are emitted as CSS custom properties (plain
   @theme, not `inline`) so components can reference them directly in inline
-  styles — e.g. the bias-demo status dots use var(--color-hudson-blue).
+  styles - e.g. the bias-demo status dots use var(--color-hudson-blue).
 */
 @theme {
   /*
-    Palette derived from the hero photograph (public/hero-bg-2.jpg) — a warm
+    Palette derived from the hero photograph (public/hero-bg-2.jpg) - a warm
     alpine sunset: peach sky, golden haze, terracotta light, dark warm-brown
     forest. Token *names* are unchanged for backward compatibility; only the
     values were rebalanced from the old cold-teal scheme so the whole page
@@ -19,16 +19,16 @@
   --color-marble-canvas: #fdf7f1;    /* Warm peach-cream: page canvas (sky) */
   --color-bone-mist: #ece0d3;        /* Warm haze hairline derived from the ridge mist */
   --color-fog-line: #ece0d3;         /* Input outlines, boundaries */
-  --color-slate-pencil: #857060;     /* Muted helper text — hazy ridge taupe */
-  --color-steel: #4a3b2c;            /* Secondary body text — mid-forest brown */
-  --color-lampblack: #241a10;        /* Headings and primary dark text — dark forest */
+  --color-slate-pencil: #857060;     /* Muted helper text - hazy ridge taupe */
+  --color-steel: #4a3b2c;            /* Secondary body text - mid-forest brown */
+  --color-lampblack: #241a10;        /* Headings and primary dark text - dark forest */
   --color-graphite: #382a1b;         /* Secondary dark UI/hover elements */
   --color-carbon-black: #241a10;     /* Primary dark nav/button surface */
   --color-hudson-blue: #b85f31;      /* Terracotta: proof accent and inline links (golden glow) */
   --color-violet-ink: #b85f31;       /* Backward-compatible alias for the proof accent */
   --color-sky-wash: #f7e7d8;         /* Pale peach cloud wash */
   --color-signal-red: #cf3a26;       /* Refusal signal, warmed to the sunset, used sparingly */
-  --color-signal-amber: #ff9f1c;     /* Hedge signal — already the sunset gold, used sparingly */
+  --color-signal-amber: #ff9f1c;     /* Hedge signal - already the sunset gold, used sparingly */
 
   /* ── Backward-compatible aliases named from DESIGN.md ── */
   --color-design-hudson-blue: #b85f31;
@@ -41,6 +41,25 @@
   --font-sans: var(--font-inter);
   --font-serif: var(--font-fraunces);
 
+  /*
+    ── Canonical type scale (applied site-wide; do not introduce off-scale
+       px values) ──────────────────────────────────────────────────────
+    Display (Fraunces 300):
+      display-lg   36 → md 54   hero h1 only
+      display      42 → md 48   every section h2
+      display-sm   28 → md 34   pull-quote statements (thesis, bias query, footer close)
+    Text (Inter):
+      item-title   20           editorial row/card titles, bias-demo h2
+      subtitle     18 → md 20   hero subtagline
+      list-title   16           principle names
+      lead         15           section intro paragraphs
+      body         14           standard body
+      small        13           meta, nav, inline links, status labels
+      caption      12           figure captions, fine print, dense detail
+      eyebrow      11           uppercase labels (tracking 0.1em, semibold)
+    Decorative numerals (contributions) and in-SVG diagram text (problem)
+    sit outside this scale by design.
+  */
   /* ── Typography scale (size + paired line-height) ─────────────────── */
   --text-caption: 0.75rem; /* 12px */
   --text-caption--line-height: 1.5;
@@ -103,7 +122,7 @@
     scroll-padding-top: 6rem;
   }
 
-  /* Calm, slow anchor scrolling — only when the user hasn't asked to reduce
+  /* Calm, slow anchor scrolling - only when the user hasn't asked to reduce
      motion. The unhurried feel comes from this plus generous section spacing
      and the reveal-on-scroll fades below. */
   @media (prefers-reduced-motion: no-preference) {
@@ -171,7 +190,7 @@
 }
 
 @keyframes pulse-ring {
-  /* Terracotta (#b85f31 = rgb(184,95,49)) — the diagram/live-status accent. */
+  /* Terracotta (#b85f31 = rgb(184,95,49)) - the diagram/live-status accent. */
   0% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(184, 95, 49, 0.42);
@@ -260,7 +279,7 @@
   }
 }
 
-/* A scanning highlight that sweeps down a panel — used inside the per-phase
+/* A scanning highlight that sweeps down a panel - used inside the per-phase
    technical-architecture stage (problem.tsx) for the "intercept" and
    "rule evaluation" scenes. */
 @keyframes cs-scan {

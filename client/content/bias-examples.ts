@@ -20,7 +20,7 @@ export type BiasExample = {
   Hardcoded, illustrative response patterns for the prototype. These are
   stand-ins for the empirical benchmark (Phase 2), chosen to surface refusal
   asymmetries: the same high-variance query is answered by one model, hedged by
-  another, and refused by a third. Not a rigorous measurement — that is what the
+  another, and refused by a third. Not a rigorous measurement - that is what the
   benchmark is for.
 */
 export const biasExamples: BiasExample[] = [
