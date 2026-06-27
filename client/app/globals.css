@@ -19,20 +19,20 @@
   --color-marble-canvas: #fdf7f1;    /* Warm peach-cream: page canvas (sky) */
   --color-bone-mist: #ece0d3;        /* Warm haze hairline derived from the ridge mist */
   --color-fog-line: #ece0d3;         /* Input outlines, boundaries */
-  --color-slate-pencil: #857060;     /* Muted helper text - hazy ridge taupe */
+  --color-slate-pencil: #7e6a5b;     /* Muted helper text - hazy ridge taupe (darkened from #857060 to clear WCAG AA 4.5:1 on the canvas) */
   --color-steel: #4a3b2c;            /* Secondary body text - mid-forest brown */
   --color-lampblack: #241a10;        /* Headings and primary dark text - dark forest */
   --color-graphite: #382a1b;         /* Secondary dark UI/hover elements */
   --color-carbon-black: #241a10;     /* Primary dark nav/button surface */
-  --color-hudson-blue: #b85f31;      /* Terracotta: proof accent and inline links (golden glow) */
-  --color-violet-ink: #b85f31;       /* Backward-compatible alias for the proof accent */
+  --color-hudson-blue: #af5a2f;      /* Terracotta: proof accent and inline links (golden glow) */
+  --color-violet-ink: #af5a2f;       /* Backward-compatible alias for the proof accent */
   --color-sky-wash: #f7e7d8;         /* Pale peach cloud wash */
   --color-signal-red: #cf3a26;       /* Refusal signal, warmed to the sunset, used sparingly */
   --color-signal-amber: #ff9f1c;     /* Hedge signal - already the sunset gold, used sparingly */
 
   /* ── Backward-compatible aliases named from DESIGN.md ── */
-  --color-design-hudson-blue: #b85f31;
-  --color-design-slate-cyan: #b85f31;
+  --color-design-hudson-blue: #af5a2f;
+  --color-design-slate-cyan: #af5a2f;
   --color-design-graphite-night: #241a10;
   --color-design-linen: #faf2ea;
   --color-design-sage: #ece0d3;
@@ -86,8 +86,8 @@
   --shadow-elevated: 0 2px 2px 0 rgba(0, 0, 0, 0.06), 0 0 0 5px rgba(0, 0, 0, 0.04); /* --shadow-subtle-3 */
   --shadow-design-sm: 0 2px 6px 0 rgba(0, 0, 0, 0.15); /* --shadow-sm */
   --shadow-glow:
-    0 0 0 1px rgba(184, 95, 49, 0.16),
-    0 10px 28px 0 rgba(184, 95, 49, 0.2);
+    0 0 0 1px rgba(175, 90, 47, 0.16),
+    0 10px 28px 0 rgba(175, 90, 47, 0.2);
 }
 
 /*
@@ -177,31 +177,35 @@
   }
 }
 
-@keyframes cs-dash {
+@keyframes cs-connect {
+  from {
+    stroke-dashoffset: 40;
+  }
   to {
-    stroke-dashoffset: -20;
+    stroke-dashoffset: 0;
   }
 }
 
-/* Static dashes so the connectors still read as "flow" even when the
-   continuous animation is suppressed under reduced motion (below). */
+/* Connectors are solid hairlines by default (and under reduced motion). When
+   motion is allowed they draw in once, synced to the node they link from - a
+   single confident stroke, not a perpetual marching-ants loop. */
 .animate-dash {
-  stroke-dasharray: 5, 5;
+  stroke-linecap: round;
 }
 
 @keyframes pulse-ring {
-  /* Terracotta (#b85f31 = rgb(184,95,49)) - the diagram/live-status accent. */
+  /* Terracotta (#af5a2f = rgb(175,90,47)) - the diagram/live-status accent. */
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(184, 95, 49, 0.42);
+    box-shadow: 0 0 0 0 rgba(175, 90, 47, 0.42);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(184, 95, 49, 0);
+    box-shadow: 0 0 0 6px rgba(175, 90, 47, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(184, 95, 49, 0);
+    box-shadow: 0 0 0 0 rgba(175, 90, 47, 0);
   }
 }
 
@@ -209,7 +213,8 @@
    asked to reduce motion. */
 @media (prefers-reduced-motion: no-preference) {
   .animate-dash {
-    animation: cs-dash 1.5s linear infinite;
+    stroke-dasharray: 40;
+    animation: cs-connect 550ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
   }
   .animate-pulse-ring {
     animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -241,30 +246,22 @@
 }
 
 @keyframes cs-stamp {
-  0% {
+  from {
     opacity: 0;
-    transform: scale(1.35) rotate(-6deg);
+    transform: scale(0.96);
   }
-  60% {
+  to {
     opacity: 1;
-    transform: scale(0.94) rotate(1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
+    transform: scale(1);
   }
 }
 
 @keyframes cs-seal {
-  0% {
+  from {
     opacity: 0;
-    transform: scale(0.85);
+    transform: scale(0.97);
   }
-  70% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: scale(1);
   }
@@ -323,6 +320,6 @@
     animation: cs-draw 650ms ease-out both;
   }
   .anim-scan {
-    animation: cs-scan 2.4s linear infinite;
+    animation: cs-scan 1.3s cubic-bezier(0.22, 1, 0.36, 1) 250ms both;
   }
 }

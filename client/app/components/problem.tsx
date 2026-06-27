@@ -1,8 +1,13 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Shield, Key, FileText, Check } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { GlyphWallpaper } from "./ui/glyph-wallpaper";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /*
   Scrollytelling section. The left thesis column is pinned (sticky) while the
@@ -91,47 +96,41 @@ export function Problem() {
   const sectionRef = useRef<HTMLElement>(null);
   const [step, setStep] = useState(0);
 
-  // Map scroll position within the pinned track to a discrete step (0–3).
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+  // Drive the discrete step (0-3) from scroll position. The pinning itself is
+  // CSS sticky (below); ScrollTrigger only reads progress across the tall
+  // track and maps it to a phase. Scroll-driving is a desktop affordance —
+  // narrow/short viewports render the finished state. gsap.matchMedia handles
+  // the responsive split and useGSAP handles cleanup on unmount.
+  useGSAP(
+    () => {
+      const toStep = (progress: number) =>
+        setStep(Math.min(3, Math.floor(progress / 0.25 + 0.0001)));
 
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      // Scroll-driving is a desktop affordance; on narrow/short viewports the
-      // panel simply renders its finished state.
-      const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-      const rect = track.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      if (!isDesktop || total <= 0) {
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        const st = ScrollTrigger.create({
+          trigger: trackRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: (self) => toStep(self.progress),
+          onRefresh: (self) => toStep(self.progress),
+        });
+        return () => st.kill();
+      });
+      mm.add("(max-width: 1023.98px)", () => {
         setStep(3);
-        return;
-      }
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      const progress = scrolled / total; // 0 → 1
-      const next = Math.min(3, Math.floor(progress / 0.25 + 0.0001));
-      setStep(next);
-    };
+      });
 
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
+      return () => mm.revert();
+    },
+    { scope: sectionRef },
+  );
 
   const done = step >= 3;
   const active = STEPS[step];
 
   return (
-    <section id="problem" ref={sectionRef} className="px-6 pt-28 md:pt-40">
+    <section id="problem" ref={sectionRef} className="px-6 pt-20 md:pt-28">
       {/* Tall track gives the pinned panel room to scroll through its phases.
           On mobile the track collapses to content height (no pinning). */}
       <div ref={trackRef} className="relative mx-auto max-w-[1100px] lg:h-[380vh]">
@@ -174,7 +173,7 @@ export function Problem() {
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-transparent px-2.5 py-0.5 text-[10px] font-semibold text-design-hudson-blue">
-                        <span className="h-1.5 w-1.5 rounded-full bg-design-hudson-blue animate-pulse-ring" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-design-hudson-blue shadow-[0_0_0_3px_rgba(175,90,47,0.12)]" />
                         Audit Pipeline
                       </span>
                     )}
@@ -190,18 +189,15 @@ export function Problem() {
                         <Fragment key={s.label}>
                           <div className="flex flex-col items-center gap-1.5">
                             <span
-                              className={`relative flex h-8 w-8 items-center justify-center rounded-full border transition-[color,background-color,border-color] duration-300 ${
+                              className={`relative flex h-8 w-8 items-center justify-center rounded-full border transition-[color,background-color,border-color,box-shadow] duration-300 ${
                                 isActive
-                                  ? "text-design-hudson-blue"
+                                  ? "border-design-hudson-blue/60 bg-design-hudson-blue/[0.06] text-design-hudson-blue shadow-[0_0_0_3px_rgba(175,90,47,0.10)]"
                                   : isDone
                                     ? "border-steel/40 bg-steel/5 text-steel"
                                     : "border-bone-mist text-slate-pencil/50"
                               }`}
                             >
                               <Icon size={14} strokeWidth={1.75} />
-                              {isActive && (
-                                <span className="absolute inset-0 rounded-full border border-design-hudson-blue/40 animate-pulse-ring" />
-                              )}
                             </span>
                             <span
                               className={`text-[10px] font-semibold tracking-tight transition-colors duration-500 ${
@@ -338,6 +334,17 @@ function Stage({ step }: { step: number }) {
             strokeLinejoin="round"
           />
         </marker>
+        {/* Soft, consistent depth for the primary node of each phase - turns the
+            flat boxes into elements that read as engineered surfaces. */}
+        <filter id="stage-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow
+            dx="0"
+            dy="1.5"
+            stdDeviation="2.5"
+            floodColor="#241a10"
+            floodOpacity="0.12"
+          />
+        </filter>
       </defs>
 
       {step === 0 && <SceneIngress />}
@@ -395,6 +402,7 @@ function SceneIngress() {
           fill={SURFACE}
           stroke={ACCENT}
           strokeWidth="2"
+          filter="url(#stage-shadow)"
         />
         <rect
           x="222"
@@ -525,6 +533,7 @@ function SceneEvaluate() {
           fill={SURFACE}
           stroke={ACCENT}
           strokeWidth="1.5"
+          filter="url(#stage-shadow)"
         />
         {/* Hedged: slate dot + steel label, per the bias-demo semantic states */}
         <circle cx="272" cy="100" r="3.5" fill={MUTED} />
@@ -602,7 +611,7 @@ function SceneAttest() {
 
       {/* Signed seal */}
       <g className="anim-stamp">
-        <circle cx="318" cy="100" r="26" fill={SURFACE} stroke={ACCENT} strokeWidth="2" />
+        <circle cx="318" cy="100" r="26" fill={SURFACE} stroke={ACCENT} strokeWidth="2" filter="url(#stage-shadow)" />
         <foreignObject x="306" y="88" width="24" height="24">
           <div className="text-design-hudson-blue">
             <Key size={24} strokeWidth={1.5} />
@@ -626,7 +635,7 @@ function SceneVerified() {
   return (
     <>
       <g className="anim-fade-in">
-        <rect x="22" y="22" width="262" height="156" rx="10" fill={SURFACE} stroke={LINE} strokeWidth="1.5" />
+        <rect x="22" y="22" width="262" height="156" rx="10" fill={SURFACE} stroke={LINE} strokeWidth="1.5" filter="url(#stage-shadow)" />
         <text x="38" y="44" className="text-[9px] font-semibold tracking-[0.08em]" fill={MUTED}>
           PROVENANCE RECORD
         </text>

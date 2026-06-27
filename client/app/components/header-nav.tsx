@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Clock, Stamp } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const DISCUSSIONS_URL = `${REPO_URL}/discussions`;
@@ -29,6 +34,23 @@ function NavComingSoon({ label }: { label: string }) {
 
 export function HeaderNav() {
   const [time, setTime] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+
+  // Solidify the floating pill once the reader has left the painted hero:
+  // a touch more opacity + shadow for legibility over the content sections,
+  // and quiet feedback that you've moved past the top. ScrollTrigger keyed to
+  // the hero (#top) — no scroll listener; useGSAP handles cleanup.
+  useGSAP(() => {
+    const hero = document.getElementById("top");
+    if (!hero) return;
+    const st = ScrollTrigger.create({
+      trigger: hero,
+      start: "bottom top+=120",
+      onEnter: () => setScrolled(true),
+      onLeaveBack: () => setScrolled(false),
+    });
+    return () => st.kill();
+  });
 
   useEffect(() => {
     const updateTime = () => {
@@ -50,7 +72,13 @@ export function HeaderNav() {
 
   return (
     <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
-      <header className="mx-auto max-w-[880px] rounded-2xl border border-white/15 bg-design-graphite-night/[0.55] px-3 py-2.5 shadow-design-sm backdrop-blur-md md:px-4 md:py-2">
+      <header
+        className={`mx-auto max-w-[880px] rounded-2xl border px-3 py-2.5 backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 motion-reduce:transition-none md:px-4 md:py-2 ${
+          scrolled
+            ? "border-white/20 bg-design-graphite-night/[0.9] shadow-[0_8px_24px_0_rgba(0,0,0,0.18)]"
+            : "border-white/15 bg-design-graphite-night/[0.55] shadow-design-sm"
+        }`}
+      >
         <nav className="flex items-center justify-between gap-3 md:gap-4">
           <div className="flex min-w-0 items-center gap-2 md:flex-1 md:justify-start">
             <a

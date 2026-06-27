@@ -5,6 +5,7 @@
 // repository-semantic substitute. The aria-label makes the destination clear.
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Clock, GitBranch, MessagesSquare } from "lucide-react";
+import { ParallaxBg } from "./ui/parallax-bg";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const DISCUSSIONS_URL = `${REPO_URL}/discussions`;
@@ -61,9 +62,9 @@ export function Footer() {
 
   return (
     <footer
-      className="relative mt-28 w-full overflow-hidden bg-cover bg-center bg-no-repeat px-6 pt-20 pb-[calc(3rem+env(safe-area-inset-bottom))] md:mt-40 md:pt-28"
-      style={{ backgroundImage: `url('${FOOTER_BACKGROUND}')` }}
+      className="relative mt-20 w-full overflow-hidden px-6 pt-20 pb-[calc(3rem+env(safe-area-inset-bottom))] md:mt-28 md:pt-28"
     >
+      <ParallaxBg src={FOOTER_BACKGROUND} />
       <div className="absolute inset-0 bg-black/[0.52]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(216,158,96,0.30),transparent_50%),linear-gradient(180deg,rgba(36,26,16,0.34),rgba(36,26,16,0.58))]" />
 

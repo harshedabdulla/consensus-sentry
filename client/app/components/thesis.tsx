@@ -8,7 +8,7 @@ const HEADLINE_LINK =
 
 export function Thesis() {
   return (
-    <section className="px-6 pt-28 md:pt-40">
+    <section className="px-6 pt-20 md:pt-28">
       <div className="mx-auto max-w-[760px] text-center">
         <p className="font-serif text-[28px] leading-[1.25] font-light tracking-[-0.02em] text-pretty text-lampblack md:text-[34px]">
           Every AI moderation decision should carry proof: which rule fired, who

@@ -47,8 +47,8 @@ const blocks: Block[] = [
 
 export function GetInvolved() {
   return (
-    <section className="px-6 pt-28 md:pt-40">
-      <div className="mx-auto max-w-[1100px]">
+    <section className="px-6 pt-20 md:pt-28">
+      <div className="mx-auto max-w-[820px]">
         <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
           Four ways in.
         </h2>

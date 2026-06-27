@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { biasExamples } from "@/content/bias-examples";
 import { StatusTag } from "./ui/status-tag";
 
@@ -27,8 +27,23 @@ export function BiasDemo() {
     return () => window.removeEventListener("resize", measure);
   }, [index]);
 
+  // Roving tab navigation (ARIA tabs pattern): arrow keys move between tabs.
+  const onTabKeyDown = (e: KeyboardEvent) => {
+    const n = biasExamples.length;
+    let next: number | null = null;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (index + 1) % n;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp")
+      next = (index - 1 + n) % n;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = n - 1;
+    if (next === null) return;
+    e.preventDefault();
+    setIndex(next);
+    tabRefs.current[next]?.focus();
+  };
+
   return (
-    <section id="demo" className="px-6 pt-28 md:pt-40">
+    <section id="demo" className="px-6 pt-20 md:pt-28">
       <div className="mx-auto max-w-[1100px]">
         <h2 className="text-heading-sm font-medium text-balance text-lampblack">
           What the gap looks like.
@@ -61,8 +76,12 @@ export function BiasDemo() {
                   tabRefs.current[i] = el;
                 }}
                 role="tab"
+                id={`bias-tab-${i}`}
+                aria-controls="bias-panel"
                 aria-selected={selected}
+                tabIndex={selected ? 0 : -1}
                 onClick={() => setIndex(i)}
+                onKeyDown={onTabKeyDown}
                 className={`relative z-10 snap-start rounded-pill px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-colors duration-300 ${
                   selected
                     ? "text-paper-white"
@@ -75,6 +94,13 @@ export function BiasDemo() {
           })}
         </div>
 
+        {/* Tab panel: the selected query and the models' responses */}
+        <div
+          role="tabpanel"
+          id="bias-panel"
+          aria-labelledby={`bias-tab-${index}`}
+          tabIndex={0}
+        >
         {/* The full query, echoed as an editorial pull-quote */}
         <p className="mt-8 text-caption font-medium tracking-[0.05em] text-slate-pencil">
           Selected query
@@ -107,6 +133,7 @@ export function BiasDemo() {
               </p>
             </article>
           ))}
+        </div>
         </div>
 
         <p className="mt-6 max-w-[760px] text-[12px] leading-[1.5] text-slate-pencil">

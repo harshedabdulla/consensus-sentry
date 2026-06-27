@@ -76,7 +76,7 @@ export function GlyphWallpaper({
 }: GlyphWallpaperProps) {
   const glyphs = variant === "hero" ? HERO_GLYPHS : SURFACE_GLYPHS;
   const stroke = variant === "hero" ? "rgba(255,255,255,0.78)" : "var(--color-design-hudson-blue)";
-  const grid = variant === "hero" ? "rgba(255,255,255,0.15)" : "rgba(184,95,49,0.12)";
+  const grid = variant === "hero" ? "rgba(255,255,255,0.15)" : "rgba(175,90,47,0.12)";
 
   return (
     <svg

@@ -1,15 +1,16 @@
 import { PillButton } from "./ui/pill-button";
+import { ParallaxBg } from "./ui/parallax-bg";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const HERO_BACKGROUND = "/hero-bg-2.jpg";
 
 export function Hero() {
   return (
-    <section 
-      className="relative flex min-h-[100dvh] w-full items-end justify-start overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-16 md:px-12 md:py-24"
-      style={{ backgroundImage: `url('${HERO_BACKGROUND}')` }}
+    <section
+      className="relative flex min-h-[100dvh] w-full items-end justify-start overflow-hidden px-4 py-16 md:px-12 md:py-24"
       id="top"
     >
+      <ParallaxBg src={HERO_BACKGROUND} />
       <div className="absolute inset-0 bg-black/[0.42]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_78%,rgba(216,158,96,0.30),transparent_34%),linear-gradient(90deg,rgba(36,26,16,0.32),transparent_58%)]" />
 
