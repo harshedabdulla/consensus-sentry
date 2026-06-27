@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import ReactDOM from "react-dom";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -52,17 +53,34 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// theme-color matches the warm page canvas so the browser chrome blends in.
+export const viewport: Viewport = {
+  themeColor: "#fdf7f1",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Preload the above-the-fold hero painting (used as a CSS background, so it
+  // can't take next/image priority) to protect LCP.
+  ReactDOM.preload("/hero-bg-2.jpg", { as: "image", fetchPriority: "high" });
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${fraunces.variable} antialiased`}
     >
-      <body className="min-h-dvh font-sans">{children}</body>
+      <body className="min-h-dvh font-sans">
+        <a
+          href="#main"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-[100] focus-visible:rounded-tag focus-visible:bg-paper-white focus-visible:px-4 focus-visible:py-2 focus-visible:text-[13px] focus-visible:font-semibold focus-visible:text-lampblack focus-visible:shadow-card"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

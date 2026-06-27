@@ -30,9 +30,9 @@ export function BiasDemo() {
   return (
     <section id="demo" className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <h3 className="text-heading-sm font-medium text-lampblack">
+        <h2 className="text-heading-sm font-medium text-balance text-lampblack">
           What the gap looks like.
-        </h3>
+        </h2>
         <p className="mt-3 max-w-[720px] text-body leading-[1.6] text-steel">
           Two queries. Six models. Different treatment, no visible rule.
         </p>
@@ -41,7 +41,7 @@ export function BiasDemo() {
         <div
           role="tablist"
           aria-label="Contested queries"
-          className="relative mt-10 inline-flex max-w-full snap-x gap-1 overflow-x-auto rounded-pill border border-fog-line bg-paper-white p-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative mt-10 inline-flex max-w-full snap-x gap-1 overflow-x-auto rounded-pill border border-fog-line bg-paper-white/40 backdrop-blur-sm p-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <span
             aria-hidden="true"
@@ -93,7 +93,7 @@ export function BiasDemo() {
               // when the selection changes, staggered left to right.
               key={`${index}-${response.model}`}
               style={{ animationDelay: `${i * 70}ms` }}
-              className="cs-fade-in rounded-card border border-bone-mist/70 bg-paper-white p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-bone-mist hover:shadow-elevated"
+              className="cs-fade-in rounded-card border border-bone-mist/70 bg-paper-white/40 backdrop-blur-sm p-6 shadow-card transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-bone-mist hover:shadow-elevated"
             >
               <div className="text-[13px] font-medium text-lampblack">
                 {response.model}

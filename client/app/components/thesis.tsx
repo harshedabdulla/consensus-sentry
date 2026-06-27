@@ -13,7 +13,7 @@ export function Thesis() {
         <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
           The thesis
         </p>
-        <p className="mt-6 font-serif text-[28px] leading-[1.3] font-light tracking-[-0.02em] text-lampblack md:text-[34px]">
+        <p className="mt-6 font-serif text-[28px] leading-[1.3] font-light tracking-[-0.02em] text-pretty text-lampblack md:text-[34px]">
           Every AI moderation decision should carry proof: which rule fired, who
           authored it, and whether the same question was treated the same way.
           Then bias can be{" "}

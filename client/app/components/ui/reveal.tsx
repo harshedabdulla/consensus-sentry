@@ -49,7 +49,7 @@ export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
         transitionDuration: "800ms",
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
       }}
-      className={`motion-safe:transition-all ${
+      className={`${
         shown
           ? "opacity-100 motion-safe:translate-y-0"
           : "motion-safe:translate-y-6 motion-safe:opacity-0"

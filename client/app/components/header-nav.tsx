@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock, ShieldCheck } from "lucide-react";
+import { Clock, Stamp } from "lucide-react";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
 const DISCUSSIONS_URL = `${REPO_URL}/discussions`;
@@ -50,7 +50,7 @@ export function HeaderNav() {
 
   return (
     <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
-      <header className="mx-auto max-w-[880px] rounded-2xl border border-white/10 bg-design-graphite-night/[0.94] px-3 py-2.5 shadow-design-sm backdrop-blur-md md:rounded-full md:px-4 md:py-2">
+      <header className="mx-auto max-w-[880px] rounded-2xl border border-white/15 bg-design-graphite-night/[0.55] px-3 py-2.5 shadow-design-sm backdrop-blur-md md:px-4 md:py-2">
         <nav className="flex items-center justify-between gap-3 md:gap-4">
           <div className="flex min-w-0 items-center gap-2 md:flex-1 md:justify-start">
             <a
@@ -58,7 +58,7 @@ export function HeaderNav() {
               className="flex min-w-0 items-center gap-2 text-[14px] font-semibold tracking-tight text-paper-white transition-opacity hover:opacity-90"
             >
               <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.07] text-white">
-                <ShieldCheck size={15} strokeWidth={1.7} />
+                <Stamp size={15} strokeWidth={1.7} aria-hidden="true" />
               </span>
               <span className="hidden sm:inline">Consensus Sentry</span>
               <span className="text-xs sm:hidden">C. Sentry</span>
@@ -90,8 +90,13 @@ export function HeaderNav() {
 
             {time && (
               <div className="hidden items-center gap-1.5 text-[12px] font-medium text-white/[0.66] md:flex">
-                <Clock size={12} strokeWidth={1.5} className="text-white/[0.52]" />
-                <span>{time}</span>
+                <Clock
+                  size={12}
+                  strokeWidth={1.5}
+                  className="text-white/[0.52]"
+                  aria-hidden="true"
+                />
+                <span className="tabular-nums">{time}</span>
               </div>
             )}
 
@@ -99,7 +104,7 @@ export function HeaderNav() {
               href={DISCUSSIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-tag border border-white/[0.12] bg-carbon-black px-3.5 py-1.5 text-[12px] font-semibold whitespace-nowrap text-paper-white transition-all duration-150 hover:bg-black active:scale-95"
+              className="inline-flex items-center justify-center rounded-tag border border-white/[0.12] bg-carbon-black px-3.5 py-1.5 text-[12px] font-semibold whitespace-nowrap text-paper-white transition-[background-color,transform] duration-150 hover:bg-black active:scale-95"
             >
               Get in touch
             </a>

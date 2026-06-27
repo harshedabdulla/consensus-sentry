@@ -1,3 +1,4 @@
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "./ui/reveal";
 
 const REPO_URL = "https://github.com/harshedabdulla/consensus-sentry";
@@ -9,29 +10,29 @@ type Block = {
   body: string;
   linkText: string;
   href?: string;
-  /** Tailwind text-color class for non-live links. */
-  mutedColor?: string;
+  /** When there's no destination yet, show this as a muted status instead. */
+  status?: string;
 };
 
 const blocks: Block[] = [
   {
     eyebrow: "for readers",
     heading: "Read the research",
-    body: "The first public note.",
-    linkText: "Coming soon",
-    mutedColor: "text-slate-pencil/60",
+    body: "The first public note — the argument, in full.",
+    linkText: "Read the research",
+    status: "Coming soon",
   },
   {
     eyebrow: "for researchers",
     heading: "See the benchmark",
     body: "The comparison set, still forming.",
-    linkText: "In development",
-    mutedColor: "text-steel/70",
+    linkText: "See the benchmark",
+    status: "In development",
   },
   {
     eyebrow: "for developers",
     heading: "View the repository",
-    body: "The workbench.",
+    body: "The workbench — code, issues, and the build in the open.",
     linkText: "github.com/harshedabdulla/consensus-sentry",
     href: REPO_URL,
   },
@@ -48,53 +49,77 @@ export function GetInvolved() {
   return (
     <section className="px-6 pt-28 md:pt-40">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-lampblack md:text-[48px]">
+        <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
+          Get involved
+        </p>
+        <h2 className="mt-4 font-serif text-[42px] leading-[1.10] font-light tracking-[-0.02em] text-balance text-lampblack md:text-[48px]">
           Four ways in.
         </h2>
         <p className="mt-6 max-w-[720px] text-[15px] leading-[1.65] text-steel">
           A few doors. Most of the building is still quiet.
         </p>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {blocks.map((block, i) => (
-            <Reveal key={block.heading} delay={i * 100} className="h-full">
-              <article
-                className="group flex h-full flex-col rounded-card border border-bone-mist/60 bg-paper-white p-8 shadow-card transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-bone-mist/90 hover:shadow-elevated"
+        {/* A directory of interactive rows — the whole row is the affordance.
+            Live entries carry an arrow that slides on hover; entries without a
+            destination yet show a muted status instead. Deliberately unlike the
+            principles list and the numbered contributions above it. */}
+        <div className="mt-12 flex flex-col">
+          {blocks.map((block, i) => {
+            const isExternal = block.href?.startsWith("http");
+            const Arrow = isExternal ? ArrowUpRight : ArrowRight;
+
+            const inner = (
+              <div
+                className={`grid grid-cols-[1fr_auto] items-center gap-x-6 py-7 md:gap-x-10 ${
+                  i === 0 ? "" : "border-t border-bone-mist/60"
+                }`}
               >
-                <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
-                  {block.eyebrow}
-                </p>
-                <h3 className="mt-3 text-heading-sm font-medium text-lampblack">
-                  {block.heading}
-                </h3>
-                <p className="mt-4 flex-1 text-[13.5px] leading-[1.6] text-steel">
-                  {block.body}
-                </p>
-                <div className="mt-6">
-                  {block.href ? (
-                    <a
-                      href={block.href}
-                      target={block.href.startsWith("http") ? "_blank" : undefined}
-                      rel={
-                        block.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="inline-block break-all text-[13px] font-semibold text-violet-ink underline transition-transform group-hover:translate-x-0.5"
-                    >
-                      {block.linkText}
-                    </a>
-                  ) : (
-                    <span
-                      className={`inline-block text-[13px] font-medium ${block.mutedColor}`}
-                    >
+                <div className="min-w-0">
+                  <p className="text-[11px] font-semibold tracking-[0.1em] text-slate-pencil uppercase">
+                    {block.eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-[22px] font-medium leading-[1.2] text-lampblack transition-colors group-hover:text-design-hudson-blue">
+                    {block.heading}
+                  </h3>
+                  <p className="mt-2 text-[14px] leading-[1.6] text-steel">
+                    {block.body}
+                  </p>
+                  {block.href && (
+                    <span className="mt-3 inline-block break-all text-[12.5px] text-slate-pencil">
                       {block.linkText}
                     </span>
                   )}
                 </div>
-              </article>
-            </Reveal>
-          ))}
+
+                {block.href ? (
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-bone-mist text-lampblack transition-[background-color,border-color,color] duration-300 group-hover:border-design-hudson-blue group-hover:bg-design-hudson-blue group-hover:text-paper-white">
+                    <Arrow size={17} strokeWidth={1.75} aria-hidden="true" />
+                  </span>
+                ) : (
+                  <span className="shrink-0 text-[12px] font-semibold whitespace-nowrap text-slate-pencil">
+                    {block.status}
+                  </span>
+                )}
+              </div>
+            );
+
+            return (
+              <Reveal key={block.heading} delay={i * 80}>
+                {block.href ? (
+                  <a
+                    href={block.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="group block transition-colors"
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <div className="group">{inner}</div>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
