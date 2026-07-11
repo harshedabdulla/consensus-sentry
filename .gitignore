@@ -1,4 +1,5 @@
 .venv
 .DS_Store
-
-experiments/rust_port/target
+v1/experiments/rust_port/target
+.next/
+node_modules/
